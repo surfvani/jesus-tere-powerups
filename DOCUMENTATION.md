@@ -11,6 +11,7 @@ jesus-tere-powerups/
 ├── update.sh             ← desde el ordenador donde se edita (Marc): commit + push a GitHub
 ├── pull.sh               ← desde los ordenadores de Jesús y Tere: recibir actualizaciones (auto-ejecuta install.sh)
 └── skills/               ← todas las habilidades del sistema, en español
+    ├── doc-actualizar/SKILL.md
     ├── doc-nueva/SKILL.md
     └── prepara-investigacion/SKILL.md
 ```
@@ -83,6 +84,14 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 - **Estado:** ✅ aprobado y publicado
 - **Última actualización:** 2026-07-13 (creado)
 
+### `doc-actualizar`
+
+- **Original:** `doc-update-project` (marc-jovani-powerups) — ex parte del snippet "finnn"
+- **Qué hace:** actualiza el DOCUMENTATION.md al final de una sesión: lista todo lo hecho, relectura fresca desde disco obligatoria (nunca de memoria), actualizaciones dirigidas (nunca reescribir entero), objetivo ~1% más corto como pasada de optimización, conocimiento duramente ganado intocable, y verificación final punto por punto.
+- **Adaptaciones aplicadas:** traducción íntegra; «sesión de código» → «sesión de trabajo»; misma nota de `tree` con plan B (investigar el directorio a mano si no está instalado); referencia cruzada a `/doc-nueva`.
+- **Estado:** ✅ aprobado y publicado
+- **Última actualización:** 2026-07-13 (creado)
+
 ---
 
 ## Plan de trabajo
@@ -91,8 +100,8 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 |---|---|---|---|
 | 1 | `prepara-investigacion` | research-prompt-instructions | ✅ aprobado y publicado |
 | 2 | `doc-nueva` | doc-new-project | ✅ aprobado y publicado |
-| 3 | `doc-actualizar` | doc-update-project | ⏳ en revisión |
-| 4 | `destila` | distill-general-conversations | pendiente |
+| 3 | `doc-actualizar` | doc-update-project | ✅ aprobado y publicado |
+| 4 | `destila` | distill-general-conversations | ⏳ en revisión |
 | 5 | `brainstorming` | superpowers/brainstorming v6.1.1 | pendiente |
 | 6 | `planifica` | plan-build | pendiente |
 | 7 | `continuia` | handoff-continuia | pendiente — al llegar, Marc decide lo de whatdocs/defcode |
