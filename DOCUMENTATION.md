@@ -47,8 +47,8 @@ duplicando funciones.
 
 Requisitos del ordenador: **solo Claude Code**. Todo lo demás lo hace el agente con el prompt de abajo.
 
-1. **El repo es PRIVADO** → hace falta un token de GitHub de SOLO LECTURA (sirve para el clone y para las actualizaciones futuras con `pull.sh`). Marc lo crea así: github.com → Settings → Developer settings → Personal access tokens → **Fine-grained tokens** → Generate new token → Resource owner: `surfvani` → Only select repositories: `jesus-tere-powerups` → Repository permissions: **Contents = Read-only** → caducidad larga. El token va incrustado en la URL del clone: queda guardado en el ordenador y las actualizaciones funcionan solas.
-2. En su Claude Code, **pegar el prompt de instalación** (abajo), sustituyendo `TOKEN_AQUI` por el token. Si el selector de personas pregunta al abrir la sesión: responder `none` (es una sesión de instalación).
+1. **El repo es PÚBLICO** (decisión de Marc, 2026-07-13) → no hace falta ningún token ni cuenta de GitHub. El clone y las actualizaciones futuras (`pull.sh`) funcionan directamente.
+2. En su Claude Code, **pegar el prompt de instalación** (abajo) tal cual. Si el selector de personas pregunta al abrir la sesión: responder `none` (es una sesión de instalación).
 3. Al terminar: **cerrar la sesión y abrir una nueva** — las 7 habilidades quedan disponibles, y el selector de personas debería ofrecer TRIADAAGENTES (si el selector tiene la lista fija dentro del hook, Marc la añade a mano al hook).
 4. Actualizaciones futuras: `cd ~/jesus-tere-powerups && ./pull.sh` (trae lo nuevo y re-ejecuta el instalador solo).
 
@@ -61,7 +61,7 @@ Hola. Vamos a instalar el sistema de la Tríada de Agentes en este ordenador. Ha
    Si macOS abre una ventana pidiendo instalar las «herramientas de línea de comandos», dile al usuario que pulse Instalar, espera a que termine, y vuelve a comprobar.
 
 2. Clona el repositorio del sistema en la carpeta de usuario:
-   git clone https://TOKEN_AQUI@github.com/surfvani/jesus-tere-powerups.git ~/jesus-tere-powerups
+   git clone https://github.com/surfvani/jesus-tere-powerups.git ~/jesus-tere-powerups
 
 3. Ejecuta el instalador:
    cd ~/jesus-tere-powerups && ./install.sh
@@ -190,7 +190,7 @@ Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantal
 3. **Nombres para `/destila`:** → **RESUELTO (2026-07-13):** no hacen falta apellidos — «Jesús» y «Tere» a secas como formas canónicas. Aplicado en el §9 del skill.
 4. **PERSONA conductora de la tríada (nota de Marc, 2026-07-13) — SE CREA AL FINAL DEL PROCESO:** redactar un documento de persona para los ordenadores de Jesús y Tere — **nombre fijado por Marc: TRIADAAGENTES** — será la 4.ª de su sistema de personas (su Claude Code, igual que el de Marc, pregunta al inicio de sesión qué persona cargar). Debe saber **conducir la tríada de agentes de principio a fin**: cuándo activar `/planifica`, cómo llevar los prompts al satélite y traer los resultados, cómo arrancar sesiones ejecutoras frescas, cuándo cerrar con `/continuia`. Claude redacta el documento (propuesta: guardarlo en `personas/` dentro de este repo — `install.sh` no toca esa carpeta); Marc lo instala localmente en su sistema de personas. Esto resuelve también la línea «PERSONA: CLAUDEDEV» de la plantilla de traspaso de `continuia` → apuntará a esta persona nueva.
    **Segunda dimensión — igual de importante (brief de Marc, 2026-07-13, capturar la esencia SIN transcribir literalmente):** Jesús y Tere son muy capaces pero nuevos en este sistema. A veces aparecen creencias limitantes («esto es demasiado grande para mí», «yo nunca podría construir algo así») y pueden sentirse intimidados — cuando la realidad es que han construido cosas enormes: un colegio grande (dos edificios), una empresa durante ~40 años, y llevan con la IA desde el primer día. Tienen 70 años; sus creencias limitantes son distintas de las de Marc (él no duda de poder construir cualquier cosa con IA; ellos jamás dudarían de poder construir un colegio — cada uno tiene las suyas). La persona debe, por tanto: (1) **dominar la operación de la tríada** de principio a fin; y (2) **guiarlos, animarlos y ponérselo fácil** — no solo animar: guiar activamente, explicar con calma qué se está haciendo y por qué, celebrar los avances, y recordarles (cuando toque, sin ser pesada) que construir cosas grandes es exactamente lo que llevan haciendo toda la vida. Para Marc el sistema es casi un sexto sentido — una extensión de sí mismo porque lo construyó; para ellos es territorio nuevo. La persona es el puente. → **CREADA Y APROBADA (2026-07-13):** `personas/TRIADAAGENTES.md` — `install.sh` la enlaza automáticamente en `~/.claude/personas/`; si el hook del selector de sus ordenadores tiene la lista de personas fija, Marc la añade a mano al hook.
-5. **Remoto GitHub:** `surfvani/jesus-tere-powerups`, **privado** — → **HECHO** (repo creado y publicado el 2026-07-13).
+5. **Remoto GitHub:** `surfvani/jesus-tere-powerups` — → **HECHO** (repo creado y publicado el 2026-07-13). → Ese mismo día Marc lo hizo **PÚBLICO** para que la instalación en sus ordenadores no necesite tokens ni cuentas de GitHub.
 6. **Git en los proyectos de Jesús y Tere:** → **RESUELTO (2026-07-13): NO.** Sin remoto ni planes de tenerlo, un git local solo añadía fricción. Sus carpetas de proyecto van sin git; la función de «deshacer» la cubre la copia de seguridad antes de editar (regla del cierre del traspaso de continuia). El repo de distribución sí sigue en git.
 
 ---
