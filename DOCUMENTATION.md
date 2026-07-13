@@ -70,8 +70,8 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 
 - **Original:** `research-prompt-instructions` (marc-jovani-powerups) — ex-snippet "resss"
 - **Qué hace:** carga las instrucciones para redactar buenos prompts de investigación profunda (deep research) para el agente satélite: cambio de paradigma, nada de tecnología abandonada, contextualización completa (el satélite tiene CERO contexto), división en varios prompts, y validación de resultados al volver.
-- **Adaptaciones aplicadas:** traducción íntegra; ejemplos de desarrollo/audio (DDSP, RAVE, JUCE, C++) → ejemplos genéricos (herramienta desde cero, difusión del colegio); «codebase» → «documentos del proyecto».
-- **Estado:** ⏳ pendiente de revisión de Marc
+- **Adaptaciones aplicadas:** traducción íntegra; ejemplos de desarrollo/audio (DDSP, RAVE, JUCE, C++) → ejemplos genéricos (herramienta desde cero, difusión del colegio); «codebase» → «documentos del proyecto». Además, mejoras generalizadas desde un prompt que Marc escribió para un proyecto de Jesús (2026-07-13): marco «no sabes lo que no sabes», bloque APRENDE DE LOS QUE YA LO HAN HECHO (precedentes: tasa de éxito, acogida, polémicas y cómo se arreglaron, pros/contras), temas colaterales, bullet de máxima probabilidad de éxito, y la pregunta «¿hace falta una segunda investigación?» en la validación.
+- **Estado:** ⏳ pendiente de revisión de Marc (2.ª pasada — añadidos del prompt de Jesús)
 - **Última actualización:** 2026-07-13 (creado)
 
 ---
