@@ -87,6 +87,7 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 | 5 | `brainstorming` | superpowers/brainstorming v6.1.1 | pendiente |
 | 6 | `planifica` | plan-build | pendiente |
 | 7 | `continuia` | handoff-continuia | pendiente — al llegar, Marc decide lo de whatdocs/defcode |
+| 8 | PERSONA conductora de la tríada | CLAUDEDEV como referencia de formato | pendiente — **último paso del proceso** (Marc la instala en sus ordenadores) |
 
 Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantalla → Marc revisa → siguiente.
 
@@ -97,7 +98,7 @@ Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantal
 1. **`continuia` — whatdocs/defcode:** la plantilla de traspaso original cierra con «LOAD /whatdocs … /defcode» (skills de código en producción). Marc decidirá qué hacer cuando lleguemos a ese skill (nota 2026-07-13).
 2. **`artifact-design` como herramienta de decisión visual (nota de Marc, 2026-07-13):** en `brainstorming` y/o `planifica`, integrar el skill `artifact-design` (viene de serie con Claude Code) para que, en planificaciones difíciles, el agente cree un artifact tipo infografía QUE AYUDE A TOMAR DECISIONES dentro de la planificación inicial. Contexto: Tere es más de leer, Jesús es más visual — el apoyo visual le ayuda en el brainstorming. Esto además **sustituye** al «Visual Companion» de Superpowers (que dependía de infraestructura del plugin y se quita).
 3. **Nombres completos de Jesús y Tere** para el registro anti-errores de transcripción de `/destila` — pendiente de que Marc los pase.
-4. **Persona del traspaso:** la plantilla de `continuia` carga la persona CLAUDEDEV (de Marc). Decidir si se crea una persona propia para ellos o se quita la línea (se decide al llegar a `continuia`).
+4. **PERSONA conductora de la tríada (nota de Marc, 2026-07-13) — SE CREA AL FINAL DEL PROCESO:** redactar un documento de persona para los ordenadores de Jesús y Tere — será la 4.ª de su sistema de personas (su Claude Code, igual que el de Marc, pregunta al inicio de sesión qué persona cargar). Debe saber **conducir la tríada de agentes de principio a fin**: cuándo activar `/planifica`, cómo llevar los prompts al satélite y traer los resultados, cómo arrancar sesiones ejecutoras frescas, cuándo cerrar con `/continuia`. Claude redacta el documento (propuesta: guardarlo en `personas/` dentro de este repo — `install.sh` no toca esa carpeta); Marc lo instala localmente en su sistema de personas. Esto resuelve también la línea «PERSONA: CLAUDEDEV» de la plantilla de traspaso de `continuia` → apuntará a esta persona nueva.
 5. **Remoto GitHub:** `surfvani/jesus-tere-powerups`, **privado** — se crea y se hace el primer push cuando Marc apruebe el primer skill.
 
 ---
