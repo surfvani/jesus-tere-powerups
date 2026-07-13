@@ -11,6 +11,7 @@ jesus-tere-powerups/
 ├── update.sh             ← desde el ordenador donde se edita (Marc): commit + push a GitHub
 ├── pull.sh               ← desde los ordenadores de Jesús y Tere: recibir actualizaciones (auto-ejecuta install.sh)
 └── skills/               ← todas las habilidades del sistema, en español
+    ├── doc-nueva/SKILL.md
     └── prepara-investigacion/SKILL.md
 ```
 
@@ -57,7 +58,7 @@ nuevos en español.
 |---|---|---|
 | Fase 1 · Planificar (sesión 1) | Planificador (Claude Code) | `/planifica` + `/brainstorming` + `/prepara-investigacion` |
 | Investigación | Satélite (Claude web, Deep Research) | — (recibe los prompts, devuelve informes) |
-| Fase 2 · Ejecutar (sesiones 2…N) | Ejecutor (Claude Code, sesión fresca) | lee el build plan; `/crea-doc`, `/actualiza-doc`, `/continuia` |
+| Fase 2 · Ejecutar (sesiones 2…N) | Ejecutor (Claude Code, sesión fresca) | lee el build plan; `/doc-nueva`, `/doc-actualizar`, `/continuia` |
 | Transversal | cualquiera | `/destila` |
 
 Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07-13).
@@ -71,7 +72,15 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 - **Original:** `research-prompt-instructions` (marc-jovani-powerups) — ex-snippet "resss"
 - **Qué hace:** carga las instrucciones para redactar buenos prompts de investigación profunda (deep research) para el agente satélite: cambio de paradigma, nada de tecnología abandonada, contextualización completa (el satélite tiene CERO contexto), división en varios prompts, y validación de resultados al volver.
 - **Adaptaciones aplicadas:** traducción íntegra; ejemplos de desarrollo/audio (DDSP, RAVE, JUCE, C++) → ejemplos genéricos (herramienta desde cero, difusión del colegio); «codebase» → «documentos del proyecto». Además, mejoras generalizadas desde un prompt que Marc escribió para un proyecto de Jesús (2026-07-13): marco «no sabes lo que no sabes», bloque APRENDE DE LOS QUE YA LO HAN HECHO (precedentes: tasa de éxito, acogida, polémicas y cómo se arreglaron, pros/contras), temas colaterales, bullet de máxima probabilidad de éxito, y la pregunta «¿hace falta una segunda investigación?» en la validación.
-- **Estado:** ⏳ pendiente de revisión de Marc (2.ª pasada — añadidos del prompt de Jesús)
+- **Estado:** ✅ aprobado y publicado
+- **Última actualización:** 2026-07-13 (creado; mismo día: añadidos generalizados del prompt de Jesús, retro-portados también al skill inglés original de Marc como v1.2)
+
+### `doc-nueva`
+
+- **Original:** `doc-new-project` (marc-jovani-powerups) — ex parte del snippet "finnn"
+- **Qué hace:** crea el DOCUMENTATION.md de un proyecto desde cero: objetivo de tamaño pactado antes de escribir (~500-700 líneas por defecto), sección bloqueada de estructura de archivos al principio, reglas anti-verborrea, y sección de conocimiento duramente ganado que no se borra jamás.
+- **Adaptaciones aplicadas:** traducción íntegra; «app / codebase / server» → «proyecto»; filtros del comando `tree` explicados en genérico (carpetas de sistema, multimedia pesado, archivos generados); «tiempo de depuración» → «tiempo invertido en resolver problemas»; NOTA sobre `tree` a petición de Marc (para qué sirve, aplica a apps y a cualquier proyecto con archivos, y plan B si no está instalado: investigar el directorio a mano); renombrado `crea-doc` → `doc-nueva` (el par queda `doc-nueva` / `doc-actualizar`).
+- **Estado:** ✅ aprobado y publicado
 - **Última actualización:** 2026-07-13 (creado)
 
 ---
@@ -80,9 +89,9 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 
 | Orden | Skill nuevo | Original | Estado |
 |---|---|---|---|
-| 1 | `prepara-investigacion` | research-prompt-instructions | ⏳ en revisión |
-| 2 | `crea-doc` | doc-new-project | pendiente |
-| 3 | `actualiza-doc` | doc-update-project | pendiente |
+| 1 | `prepara-investigacion` | research-prompt-instructions | ✅ aprobado y publicado |
+| 2 | `doc-nueva` | doc-new-project | ✅ aprobado y publicado |
+| 3 | `doc-actualizar` | doc-update-project | ⏳ en revisión |
 | 4 | `destila` | distill-general-conversations | pendiente |
 | 5 | `brainstorming` | superpowers/brainstorming v6.1.1 | pendiente |
 | 6 | `planifica` | plan-build | pendiente |
