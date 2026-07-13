@@ -11,6 +11,7 @@ jesus-tere-powerups/
 ├── update.sh             ← desde el ordenador donde se edita (Marc): commit + push a GitHub
 ├── pull.sh               ← desde los ordenadores de Jesús y Tere: recibir actualizaciones (auto-ejecuta install.sh)
 └── skills/               ← todas las habilidades del sistema, en español
+    ├── brainstorming/SKILL.md
     ├── destila/SKILL.md
     ├── doc-actualizar/SKILL.md
     ├── doc-nueva/SKILL.md
@@ -93,6 +94,14 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 - **Estado:** ✅ aprobado y publicado
 - **Última actualización:** 2026-07-13 (creado)
 
+### `brainstorming`
+
+- **Original:** skill `brainstorming` del plugin Superpowers v6.1.1 (fuera del repo de Marc)
+- **Qué hace:** la disciplina de diseño antes de construir: preguntas de una en una (mejor con opciones), 2-3 enfoques con recomendación, diseño presentado por secciones con aprobación en cada una, PUERTA-DURA (nada se implementa sin diseño aprobado, por simple que parezca), documento de especificación con auto-revisión, y puerta de revisión final del usuario.
+- **Adaptaciones aplicadas:** traducción íntegra; ⚠️ estado final `writing-plans` → **volver a /planifica** (el skill que lo invoca en la tríada) — cambiado en checklist, diagrama de flujo, sección Implementación y nota final; ⚠️ sección «Visual Companion» (dependía del servidor del plugin) → reescrita como **«Apoyo visual para decidir (artifacts)»** usando el skill `artifact-design` + herramienta Artifact nativos de Claude Code (nota de Marc 2026-07-13: infografías para TOMA DE DECISIONES en planificaciones difíciles; conserva la disciplina justo-a-tiempo, ofrecimiento en mensaje propio, y test visual-vs-texto por pregunta); referencia a `elements-of-style` → «escribe claro y conciso»; ⚠️ SIN documento de spec (decisión de Marc 2026-07-13: sobraba — el brainstorming vive dentro de /planifica y el único artefacto del proceso es el build plan): el cierre oficial es en el chat — resumen final del diseño consolidado + auto-revisión sobre ese texto (huecos, contradicciones, alcance, ambigüedad; correcciones a la vista) + OK final del usuario — y el resumen aprobado es la semilla que /planifica transcribe en el build plan; al desaparecer el spec desaparece también su commit (git queda confinado a continuia); ejemplos dev → genéricos de colegio.
+- **Estado:** ✅ aprobado y publicado
+- **Última actualización:** 2026-07-13 (creado)
+
 ### `destila`
 
 - **Original:** `distill-general-conversations` (marc-jovani-powerups)
@@ -111,8 +120,8 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 | 2 | `doc-nueva` | doc-new-project | ✅ aprobado y publicado |
 | 3 | `doc-actualizar` | doc-update-project | ✅ aprobado y publicado |
 | 4 | `destila` | distill-general-conversations | ✅ aprobado y publicado |
-| 5 | `brainstorming` | superpowers/brainstorming v6.1.1 | ⏳ en revisión |
-| 6 | `planifica` | plan-build | pendiente |
+| 5 | `brainstorming` | superpowers/brainstorming v6.1.1 | ✅ aprobado y publicado |
+| 6 | `planifica` | plan-build | ⏳ en revisión |
 | 7 | `continuia` | handoff-continuia | pendiente — al llegar, Marc decide lo de whatdocs/defcode |
 | 8 | PERSONA conductora de la tríada | CLAUDEDEV como referencia de formato | pendiente — **último paso del proceso** (Marc la instala en sus ordenadores) |
 
