@@ -81,7 +81,7 @@ ACLARACIÓN IMPORTANTE: El agente que ejecuta la tarea NO debe hacer la investig
 
 Además, si la ejecución va a ocurrir a lo largo de varias sesiones (1 sesión = entre 120k y 180k tokens de contexto), entonces instruye al agente de IA para que actualice este documento de plan con progreso, estado y próximos pasos, cada vez que cerremos una sesión y antes de pasar a la siguiente. Debes añadir dos cosas:
   1. Protocolo de Continuidad Entre Sesiones (sección aparte) — Instrucciones claras para el agente de IA sobre qué hacer al final y al principio de cada sesión:
-      Final de sesión: Actualiza el Registro de Sesiones (Session Log) con el trabajo completado, el estado actual, los archivos tocados, los descubrimientos clave, los bloqueos y los próximos pasos exactos. Actualiza la lista de TODOs. Guarda los cambios (commit si el proyecto usa git).
+      Final de sesión: Actualiza el Registro de Sesiones (Session Log) con el trabajo completado, el estado actual, los archivos tocados, los descubrimientos clave, los bloqueos y los próximos pasos exactos. Actualiza la lista de TODOs. Guarda los cambios.
        Inicio de sesión: Lee la última entrada del Registro de Sesiones, confirma con el usuario, no releas archivos ni rehagas trabajo.
   2. Registro de Sesiones / Session Log (sección nueva al final) — Plantilla vacía lista para recibir entradas. Cada sesión tiene una entrada estructurada con: elementos completados, estado actual, archivos creados/modificados, descubrimientos clave, bloqueos y próximos pasos ordenados.
 
