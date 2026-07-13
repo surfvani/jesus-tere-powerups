@@ -11,6 +11,7 @@ jesus-tere-powerups/
 ├── update.sh             ← desde el ordenador donde se edita (Marc): commit + push a GitHub
 ├── pull.sh               ← desde los ordenadores de Jesús y Tere: recibir actualizaciones (auto-ejecuta install.sh)
 └── skills/               ← todas las habilidades del sistema, en español
+    ├── destila/SKILL.md
     ├── doc-actualizar/SKILL.md
     ├── doc-nueva/SKILL.md
     └── prepara-investigacion/SKILL.md
@@ -92,6 +93,14 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 - **Estado:** ✅ aprobado y publicado
 - **Última actualización:** 2026-07-13 (creado)
 
+### `destila`
+
+- **Original:** `distill-general-conversations` (marc-jovani-powerups)
+- **Qué hace:** convierte cualquier transcript largo (reunión, clase, estrategia, retro, llamada, sesión con IA) en un documento estructurado y fiel: detecta el registro solo, aplica el paquete de formato que toca (decisiones, tareas, FAQ, notas de voz…), y ejecuta las auditorías obligatorias anti-fabricación, de asunciones y de coherencia interna antes de cerrar.
+- **Adaptaciones aplicadas:** traducción íntegra (15 secciones completas); idioma de salida por defecto ENGLISH → ESPAÑOL (y la pregunta de pre-vuelo ofrece ESPAÑOL primero); etiquetas de bloques en español (DECISIÓN, ACCIÓN, OJO, EN LA PRÁCTICA) y marcas en español ([INFERIDO DEL CONTEXTO], [POSIBLEMENTE: X], [SUPERADO], [ASUMIDO EN LA FUENTE — SIN VERIFICAR]); ejemplos de audio → genéricos; en la description se eliminaron las referencias a los skills distill-* que no existen en este sistema; entradas fijas del registro de nombres: Jesús y Tere ⚠️ PENDIENTE de que Marc fije los nombres completos (se mantiene la entrada de Marc Jovani).
+- **Estado:** ✅ aprobado y publicado
+- **Última actualización:** 2026-07-13 (creado)
+
 ---
 
 ## Plan de trabajo
@@ -101,8 +110,8 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 | 1 | `prepara-investigacion` | research-prompt-instructions | ✅ aprobado y publicado |
 | 2 | `doc-nueva` | doc-new-project | ✅ aprobado y publicado |
 | 3 | `doc-actualizar` | doc-update-project | ✅ aprobado y publicado |
-| 4 | `destila` | distill-general-conversations | ⏳ en revisión |
-| 5 | `brainstorming` | superpowers/brainstorming v6.1.1 | pendiente |
+| 4 | `destila` | distill-general-conversations | ✅ aprobado y publicado |
+| 5 | `brainstorming` | superpowers/brainstorming v6.1.1 | ⏳ en revisión |
 | 6 | `planifica` | plan-build | pendiente |
 | 7 | `continuia` | handoff-continuia | pendiente — al llegar, Marc decide lo de whatdocs/defcode |
 | 8 | PERSONA conductora de la tríada | CLAUDEDEV como referencia de formato | pendiente — **último paso del proceso** (Marc la instala en sus ordenadores) |
