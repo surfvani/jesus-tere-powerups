@@ -10,6 +10,8 @@ jesus-tere-powerups/
 ├── install.sh            ← instalación en un ordenador nuevo: enlaza cada skill en ~/.claude/skills/
 ├── update.sh             ← desde el ordenador donde se edita (Marc): commit + push a GitHub
 ├── pull.sh               ← desde los ordenadores de Jesús y Tere: recibir actualizaciones (auto-ejecuta install.sh)
+├── personas/             ← personas para su selector (install.sh las enlaza automáticamente en ~/.claude/personas/)
+│   └── TRIADAAGENTES.md  ← la persona conductora de la tríada (la 4.ª de su selector)
 └── skills/               ← todas las habilidades del sistema, en español
     ├── brainstorming/SKILL.md
     ├── continuia/SKILL.md
@@ -38,6 +40,40 @@ actualizaciones: Marc edita aquí → `./update.sh` → sus ordenadores ejecutan
 **⚠️ No ejecutar `install.sh` en el ordenador de Marc** — instalaría estos
 skills en su Claude Code personal, conviviendo con los originales en inglés y
 duplicando funciones.
+
+---
+
+## Instalación en los ordenadores de Jesús y Tere
+
+Requisitos del ordenador: **solo Claude Code**. Todo lo demás lo hace el agente con el prompt de abajo.
+
+1. **El repo es PRIVADO** → hace falta un token de GitHub de SOLO LECTURA (sirve para el clone y para las actualizaciones futuras con `pull.sh`). Marc lo crea así: github.com → Settings → Developer settings → Personal access tokens → **Fine-grained tokens** → Generate new token → Resource owner: `surfvani` → Only select repositories: `jesus-tere-powerups` → Repository permissions: **Contents = Read-only** → caducidad larga. El token va incrustado en la URL del clone: queda guardado en el ordenador y las actualizaciones funcionan solas.
+2. En su Claude Code, **pegar el prompt de instalación** (abajo), sustituyendo `TOKEN_AQUI` por el token. Si el selector de personas pregunta al abrir la sesión: responder `none` (es una sesión de instalación).
+3. Al terminar: **cerrar la sesión y abrir una nueva** — las 7 habilidades quedan disponibles, y el selector de personas debería ofrecer TRIADAAGENTES (si el selector tiene la lista fija dentro del hook, Marc la añade a mano al hook).
+4. Actualizaciones futuras: `cd ~/jesus-tere-powerups && ./pull.sh` (trae lo nuevo y re-ejecuta el instalador solo).
+
+### Prompt de instalación (copiar y pegar en su Claude Code)
+
+```
+Hola. Vamos a instalar el sistema de la Tríada de Agentes en este ordenador. Hazlo todo tú, paso a paso, explicando en una frase qué hace cada paso. Este ordenador solo tiene Claude Code — no des nada por instalado.
+
+1. Comprueba que git funciona: git --version
+   Si macOS abre una ventana pidiendo instalar las «herramientas de línea de comandos», dile al usuario que pulse Instalar, espera a que termine, y vuelve a comprobar.
+
+2. Clona el repositorio del sistema en la carpeta de usuario:
+   git clone https://TOKEN_AQUI@github.com/surfvani/jesus-tere-powerups.git ~/jesus-tere-powerups
+
+3. Ejecuta el instalador:
+   cd ~/jesus-tere-powerups && ./install.sh
+   (Conecta las 7 habilidades en ~/.claude/skills/ y la persona TRIADAAGENTES en ~/.claude/personas/. Es seguro re-ejecutarlo.)
+
+4. Verifica y enséñame el resultado:
+   ls ~/.claude/skills/
+   ls -la ~/.claude/personas/
+   Deben aparecer las 7 habilidades (brainstorming, continuia, destila, doc-actualizar, doc-nueva, planifica, prepara-investigacion) y TRIADAAGENTES.md.
+
+5. Para terminar, dime en 3 líneas y en lenguaje llano: qué ha quedado instalado, y que el usuario debe cerrar esta sesión y abrir una nueva — en la nueva, las habilidades ya estarán activas y podrá elegir la persona TRIADAAGENTES al arrancar.
+```
 
 ---
 
@@ -141,7 +177,7 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 | 5 | `brainstorming` | superpowers/brainstorming v6.1.1 | ✅ aprobado y publicado |
 | 6 | `planifica` | plan-build | ✅ aprobado y publicado |
 | 7 | `continuia` | handoff-continuia | ✅ aprobado y publicado |
-| 8 | PERSONA `TRIADAAGENTES` | CLAUDEDEV como referencia de formato | ⏳ creada — en revisión de Marc (él la instala en sus ordenadores) |
+| 8 | PERSONA `TRIADAAGENTES` | CLAUDEDEV como referencia de formato | ✅ aprobada — `install.sh` la enlaza automáticamente en `~/.claude/personas/` |
 
 Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantalla → Marc revisa → siguiente.
 
@@ -153,7 +189,7 @@ Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantal
 2. **`artifact-design` como herramienta de decisión visual (nota de Marc, 2026-07-13):** en `brainstorming` y/o `planifica`, integrar el skill `artifact-design` (viene de serie con Claude Code) para que, en planificaciones difíciles, el agente cree un artifact tipo infografía QUE AYUDE A TOMAR DECISIONES dentro de la planificación inicial. Contexto: Tere es más de leer, Jesús es más visual — el apoyo visual le ayuda en el brainstorming. Esto además **sustituye** al «Visual Companion» de Superpowers (que dependía de infraestructura del plugin y se quita). → **APLICADO** en `/brainstorming` (sección «Apoyo visual para decidir (artifacts)»).
 3. **Nombres para `/destila`:** → **RESUELTO (2026-07-13):** no hacen falta apellidos — «Jesús» y «Tere» a secas como formas canónicas. Aplicado en el §9 del skill.
 4. **PERSONA conductora de la tríada (nota de Marc, 2026-07-13) — SE CREA AL FINAL DEL PROCESO:** redactar un documento de persona para los ordenadores de Jesús y Tere — **nombre fijado por Marc: TRIADAAGENTES** — será la 4.ª de su sistema de personas (su Claude Code, igual que el de Marc, pregunta al inicio de sesión qué persona cargar). Debe saber **conducir la tríada de agentes de principio a fin**: cuándo activar `/planifica`, cómo llevar los prompts al satélite y traer los resultados, cómo arrancar sesiones ejecutoras frescas, cuándo cerrar con `/continuia`. Claude redacta el documento (propuesta: guardarlo en `personas/` dentro de este repo — `install.sh` no toca esa carpeta); Marc lo instala localmente en su sistema de personas. Esto resuelve también la línea «PERSONA: CLAUDEDEV» de la plantilla de traspaso de `continuia` → apuntará a esta persona nueva.
-   **Segunda dimensión — igual de importante (brief de Marc, 2026-07-13, capturar la esencia SIN transcribir literalmente):** Jesús y Tere son muy capaces pero nuevos en este sistema. A veces aparecen creencias limitantes («esto es demasiado grande para mí», «yo nunca podría construir algo así») y pueden sentirse intimidados — cuando la realidad es que han construido cosas enormes: un colegio grande (dos edificios), una empresa durante ~40 años, y llevan con la IA desde el primer día. Tienen 70 años; sus creencias limitantes son distintas de las de Marc (él no duda de poder construir cualquier cosa con IA; ellos jamás dudarían de poder construir un colegio — cada uno tiene las suyas). La persona debe, por tanto: (1) **dominar la operación de la tríada** de principio a fin; y (2) **guiarlos, animarlos y ponérselo fácil** — no solo animar: guiar activamente, explicar con calma qué se está haciendo y por qué, celebrar los avances, y recordarles (cuando toque, sin ser pesada) que construir cosas grandes es exactamente lo que llevan haciendo toda la vida. Para Marc el sistema es casi un sexto sentido — una extensión de sí mismo porque lo construyó; para ellos es territorio nuevo. La persona es el puente.
+   **Segunda dimensión — igual de importante (brief de Marc, 2026-07-13, capturar la esencia SIN transcribir literalmente):** Jesús y Tere son muy capaces pero nuevos en este sistema. A veces aparecen creencias limitantes («esto es demasiado grande para mí», «yo nunca podría construir algo así») y pueden sentirse intimidados — cuando la realidad es que han construido cosas enormes: un colegio grande (dos edificios), una empresa durante ~40 años, y llevan con la IA desde el primer día. Tienen 70 años; sus creencias limitantes son distintas de las de Marc (él no duda de poder construir cualquier cosa con IA; ellos jamás dudarían de poder construir un colegio — cada uno tiene las suyas). La persona debe, por tanto: (1) **dominar la operación de la tríada** de principio a fin; y (2) **guiarlos, animarlos y ponérselo fácil** — no solo animar: guiar activamente, explicar con calma qué se está haciendo y por qué, celebrar los avances, y recordarles (cuando toque, sin ser pesada) que construir cosas grandes es exactamente lo que llevan haciendo toda la vida. Para Marc el sistema es casi un sexto sentido — una extensión de sí mismo porque lo construyó; para ellos es territorio nuevo. La persona es el puente. → **CREADA Y APROBADA (2026-07-13):** `personas/TRIADAAGENTES.md` — `install.sh` la enlaza automáticamente en `~/.claude/personas/`; si el hook del selector de sus ordenadores tiene la lista de personas fija, Marc la añade a mano al hook.
 5. **Remoto GitHub:** `surfvani/jesus-tere-powerups`, **privado** — → **HECHO** (repo creado y publicado el 2026-07-13).
 6. **Git en los proyectos de Jesús y Tere:** → **RESUELTO (2026-07-13): NO.** Sin remoto ni planes de tenerlo, un git local solo añadía fricción. Sus carpetas de proyecto van sin git; la función de «deshacer» la cubre la copia de seguridad antes de editar (regla del cierre del traspaso de continuia). El repo de distribución sí sigue en git.
 

@@ -140,8 +140,39 @@ for skill_path in "$SKILLS_SRC"/*/; do
   ensure_skill_venv "$skill_path_clean" "$skill_name"
 done
 
+# ────────── personas: enlazar personas/*.md en ~/.claude/personas/ ──────────
+PERSONAS_SRC="$REPO_DIR/personas"
+PERSONAS_DEST="$HOME/.claude/personas"
+
+if [[ -d "$PERSONAS_SRC" ]]; then
+  mkdir -p "$PERSONAS_DEST"
+  for persona_file in "$PERSONAS_SRC"/*.md; do
+    [[ -e "$persona_file" ]] || continue
+    base="$(basename "$persona_file")"
+    target="$PERSONAS_DEST/$base"
+    echo "→ persona: $base"
+    if [[ -L "$target" ]]; then
+      current="$(readlink "$target")"
+      if [[ "$current" == "$persona_file" ]]; then
+        echo "  OK     persona (enlace ya correcto)"
+      else
+        echo "  FIX    persona (apuntaba a $current, re-apuntando)"
+        rm "$target"
+        ln -s "$persona_file" "$target"
+      fi
+    elif [[ -e "$target" ]]; then
+      echo "  ERROR: $target existe y NO es un enlace simbólico. Me niego a sobrescribirlo." >&2
+      exit 1
+    else
+      ln -s "$persona_file" "$target"
+      echo "  LINK   persona -> $PERSONAS_DEST"
+    fi
+  done
+fi
+
 echo
 echo "Hecho."
 echo "  Skills:                 $SKILLS_DEST"
+echo "  Personas:               $PERSONAS_DEST"
 echo "  Herramientas incluidas: $BIN_DEST"
 echo "  Venvs de skills:        $CONFIG_BASE/<nombre-skill>/venv (cuando hay requirements.txt)"
