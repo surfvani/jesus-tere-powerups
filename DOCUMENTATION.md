@@ -74,9 +74,9 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 ### `planifica`
 
 - **Original:** `plan-build` (marc-jovani-powerups) — ex-snippet "plania"
-- **Qué hace:** el corazón de la tríada. Pone al agente en modo planificador: brainstorming (paso 2, vía /brainstorming), investigaciones intercaladas con agentes satélite, pregunta obligatoria de Estado Activo («¿qué está en marcha y sangrando?»), y creación incremental del documento de build plan con todo lo que el ejecutor necesita: TODOs con checkpoints 🔬, Protocolo de Continuidad Entre Sesiones, Registro de Sesiones, Protocolo de Documentación, Regla del Multiplicador 10x, y el prompt de arranque SIEMPRE en el chat (nunca enterrado en el documento).
-- **Adaptaciones aplicadas:** traducción íntegra; ⚠️ eliminada la carga de `/how-marc-works` (paso 1); ⚠️ corregida la referencia obsoleta al snippet «resss» de TextExpander (ahora apunta a `/prepara-investigacion`, igual que el resto de menciones); «EDITDOC tool» → «herramienta Edit»; ejemplos dev (entrenar modelos, GPUs, frameworks) → genéricos (campaña de captación de familias, plataformas); disparadores y anti-patrones del Protocolo 10x generalizados (herramienta/plataforma/método en vez de framework/training config); $200/día → 200 €/día; enlazado con el cierre-en-chat del /brainstorming adaptado («el resumen final aprobado es la semilla del build plan»); commit condicionado a «si el proyecto usa git»; añadida una línea al Protocolo de Documentación indicando que el build plan mande al ejecutor usar `/doc-nueva` y `/doc-actualizar`; «Section 11» (resto de un proyecto antiguo) → «el Registro de Sesiones».
-- **Estado:** ⏳ pendiente de revisión de Marc
+- **Qué hace:** el corazón de la tríada. Pone al agente en modo planificador: brainstorming (paso 2, vía /brainstorming), investigaciones intercaladas con agentes satélite, y creación incremental del documento de build plan con todo lo que el ejecutor necesita: TODOs con checkpoints 🔬, Protocolo de Continuidad Entre Sesiones, Registro de Sesiones, Protocolo de Documentación, Regla del Multiplicador 10x, y el prompt de arranque SIEMPRE en el chat (nunca enterrado en el documento).
+- **Adaptaciones aplicadas:** traducción íntegra; ⚠️ eliminada la carga de `/how-marc-works` (paso 1); ⚠️ corregida la referencia obsoleta al snippet «resss» de TextExpander (ahora apunta a `/prepara-investigacion`, igual que el resto de menciones); «EDITDOC tool» → «herramienta Edit»; ejemplos dev (entrenar modelos, GPUs, frameworks) → genéricos (campaña de captación de familias, plataformas); disparadores y anti-patrones del Protocolo 10x generalizados (herramienta/plataforma/método en vez de framework/training config); ⚠️ ELIMINADO el Protocolo de Estado Activo completo — pregunta obligatoria, tabla 🚨/🟢 y reglas de promoción de hitos (decisión de Marc 2026-07-13: resolvía un problema de la cartera de sistemas vivos monetizados de Marc; para J&T era aparato de más) — queda solo una pregunta suave en el brainstorming sobre cosas ya en marcha; **NOTA para continuia:** al adaptarlo habrá que quitar sus referencias a «Active State» y a filas 🚨; enlazado con el cierre-en-chat del /brainstorming adaptado («el resumen final aprobado es la semilla del build plan»); commit condicionado a «si el proyecto usa git»; añadida una línea al Protocolo de Documentación indicando que el build plan mande al ejecutor usar `/doc-nueva` y `/doc-actualizar`; «Section 11» (resto de un proyecto antiguo) → «el Registro de Sesiones».
+- **Estado:** ✅ aprobado y publicado
 - **Última actualización:** 2026-07-13 (creado)
 
 ### `prepara-investigacion`
@@ -130,7 +130,7 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 | 3 | `doc-actualizar` | doc-update-project | ✅ aprobado y publicado |
 | 4 | `destila` | distill-general-conversations | ✅ aprobado y publicado |
 | 5 | `brainstorming` | superpowers/brainstorming v6.1.1 | ✅ aprobado y publicado |
-| 6 | `planifica` | plan-build | ⏳ en revisión |
+| 6 | `planifica` | plan-build | ✅ aprobado y publicado |
 | 7 | `continuia` | handoff-continuia | pendiente — al llegar, Marc decide lo de whatdocs/defcode |
 | 8 | PERSONA conductora de la tríada | CLAUDEDEV como referencia de formato | pendiente — **último paso del proceso** (Marc la instala en sus ordenadores) |
 
