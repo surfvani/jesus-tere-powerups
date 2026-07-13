@@ -1,0 +1,107 @@
+# jesus-tere-powerups — Documentación
+
+## ⚠️ REFERENCIA CRÍTICA DE ESTRUCTURA
+
+**📌 NOTA: Esta sección NO se cambia salvo que cambie la estructura real del repositorio. No omitirla al actualizar la documentación.**
+
+```
+jesus-tere-powerups/
+├── DOCUMENTATION.md      ← este archivo (la única documentación del repo)
+├── install.sh            ← instalación en un ordenador nuevo: enlaza cada skill en ~/.claude/skills/
+├── update.sh             ← desde el ordenador donde se edita (Marc): commit + push a GitHub
+├── pull.sh               ← desde los ordenadores de Jesús y Tere: recibir actualizaciones (auto-ejecuta install.sh)
+└── skills/               ← todas las habilidades del sistema, en español
+    └── prepara-investigacion/SKILL.md
+```
+
+---
+
+## Propósito
+
+Adaptación al español (de España) del sistema **Tríada de Agentes** de Marc
+(`surfvani/marc-jovani-powerups`), preparada para **Jesús y Tere**: habilidades
+traducidas, sin jerga de programación, y generalizadas para cualquier tipo de
+proyecto (marketing del colegio, SEO de la web, captación de alumnos, plan de
+introducción de la IA en el colegio…).
+
+Se construye en el ordenador de Marc y se instala en los ordenadores de Jesús y
+Tere clonando este repositorio y ejecutando `./install.sh`. Para las
+actualizaciones: Marc edita aquí → `./update.sh` → sus ordenadores ejecutan
+`./pull.sh`.
+
+**⚠️ No ejecutar `install.sh` en el ordenador de Marc** — instalaría estos
+skills en su Claude Code personal, conviviendo con los originales en inglés y
+duplicando funciones.
+
+---
+
+## Regla nº 1 de este repo — adaptación viva
+
+En el repo de Marc la ley es el «porte literal, byte a byte» (verbatim-port).
+**Aquí es exactamente lo contrario:** cada skill es una TRADUCCIÓN + ADAPTACIÓN
+de su original. Los originales en inglés son solo referencia histórica.
+
+**Nunca "re-sincronizar" un skill desde su original en inglés** — se pisarían
+las adaptaciones hechas a propósito.
+
+Principio de adaptación (palabras de Marc): *"usa lo que ya hay, adapta solo lo
+obvio"* — es decir: idioma, ejemplos de programación → ejemplos genéricos,
+menciones a Marc → Jesús/Tere, y referencias cruzadas apuntando a los nombres
+nuevos en español.
+
+---
+
+## La tríada (mapa mental)
+
+| Fase | Agente | Skills |
+|---|---|---|
+| Fase 1 · Planificar (sesión 1) | Planificador (Claude Code) | `/planifica` + `/brainstorming` + `/prepara-investigacion` |
+| Investigación | Satélite (Claude web, Deep Research) | — (recibe los prompts, devuelve informes) |
+| Fase 2 · Ejecutar (sesiones 2…N) | Ejecutor (Claude Code, sesión fresca) | lee el build plan; `/crea-doc`, `/actualiza-doc`, `/continuia` |
+| Transversal | cualquiera | `/destila` |
+
+Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07-13).
+
+---
+
+## Catálogo de skills
+
+### `prepara-investigacion`
+
+- **Original:** `research-prompt-instructions` (marc-jovani-powerups) — ex-snippet "resss"
+- **Qué hace:** carga las instrucciones para redactar buenos prompts de investigación profunda (deep research) para el agente satélite: cambio de paradigma, nada de tecnología abandonada, contextualización completa (el satélite tiene CERO contexto), división en varios prompts, y validación de resultados al volver.
+- **Adaptaciones aplicadas:** traducción íntegra; ejemplos de desarrollo/audio (DDSP, RAVE, JUCE, C++) → ejemplos genéricos (herramienta desde cero, difusión del colegio); «codebase» → «documentos del proyecto».
+- **Estado:** ⏳ pendiente de revisión de Marc
+- **Última actualización:** 2026-07-13 (creado)
+
+---
+
+## Plan de trabajo
+
+| Orden | Skill nuevo | Original | Estado |
+|---|---|---|---|
+| 1 | `prepara-investigacion` | research-prompt-instructions | ⏳ en revisión |
+| 2 | `crea-doc` | doc-new-project | pendiente |
+| 3 | `actualiza-doc` | doc-update-project | pendiente |
+| 4 | `destila` | distill-general-conversations | pendiente |
+| 5 | `brainstorming` | superpowers/brainstorming v6.1.1 | pendiente |
+| 6 | `planifica` | plan-build | pendiente |
+| 7 | `continuia` | handoff-continuia | pendiente — al llegar, Marc decide lo de whatdocs/defcode |
+
+Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantalla → Marc revisa → siguiente.
+
+---
+
+## Decisiones registradas (pendientes de aplicar)
+
+1. **`continuia` — whatdocs/defcode:** la plantilla de traspaso original cierra con «LOAD /whatdocs … /defcode» (skills de código en producción). Marc decidirá qué hacer cuando lleguemos a ese skill (nota 2026-07-13).
+2. **`artifact-design` como herramienta de decisión visual (nota de Marc, 2026-07-13):** en `brainstorming` y/o `planifica`, integrar el skill `artifact-design` (viene de serie con Claude Code) para que, en planificaciones difíciles, el agente cree un artifact tipo infografía QUE AYUDE A TOMAR DECISIONES dentro de la planificación inicial. Contexto: Tere es más de leer, Jesús es más visual — el apoyo visual le ayuda en el brainstorming. Esto además **sustituye** al «Visual Companion» de Superpowers (que dependía de infraestructura del plugin y se quita).
+3. **Nombres completos de Jesús y Tere** para el registro anti-errores de transcripción de `/destila` — pendiente de que Marc los pase.
+4. **Persona del traspaso:** la plantilla de `continuia` carga la persona CLAUDEDEV (de Marc). Decidir si se crea una persona propia para ellos o se quita la línea (se decide al llegar a `continuia`).
+5. **Remoto GitHub:** `surfvani/jesus-tere-powerups`, **privado** — se crea y se hace el primer push cuando Marc apruebe el primer skill.
+
+---
+
+## Conocimiento duramente ganado
+
+- **(2026-07-13)** Hallazgos de la lectura íntegra de los originales que la adaptación debe corregir: (a) `plan-build` línea 176 aún referencia el snippet antiguo «resss» de TextExpander; (b) el `brainstorming` de Superpowers termina invocando `writing-plans` (no existirá aquí — debe volver a `/planifica`); (c) la regla dura nº 7 de `handoff-continuia` exige inglés US para todo lo escrito (invertir a español); (d) `distill-general-conversations` saca los documentos en INGLÉS por defecto y su registro de nombres solo conoce «Marc Jovani».
