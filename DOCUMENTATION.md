@@ -15,6 +15,7 @@ jesus-tere-powerups/
     ├── destila/SKILL.md
     ├── doc-actualizar/SKILL.md
     ├── doc-nueva/SKILL.md
+    ├── planifica/SKILL.md
     └── prepara-investigacion/SKILL.md
 ```
 
@@ -69,6 +70,14 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 ---
 
 ## Catálogo de skills
+
+### `planifica`
+
+- **Original:** `plan-build` (marc-jovani-powerups) — ex-snippet "plania"
+- **Qué hace:** el corazón de la tríada. Pone al agente en modo planificador: brainstorming (paso 2, vía /brainstorming), investigaciones intercaladas con agentes satélite, pregunta obligatoria de Estado Activo («¿qué está en marcha y sangrando?»), y creación incremental del documento de build plan con todo lo que el ejecutor necesita: TODOs con checkpoints 🔬, Protocolo de Continuidad Entre Sesiones, Registro de Sesiones, Protocolo de Documentación, Regla del Multiplicador 10x, y el prompt de arranque SIEMPRE en el chat (nunca enterrado en el documento).
+- **Adaptaciones aplicadas:** traducción íntegra; ⚠️ eliminada la carga de `/how-marc-works` (paso 1); ⚠️ corregida la referencia obsoleta al snippet «resss» de TextExpander (ahora apunta a `/prepara-investigacion`, igual que el resto de menciones); «EDITDOC tool» → «herramienta Edit»; ejemplos dev (entrenar modelos, GPUs, frameworks) → genéricos (campaña de captación de familias, plataformas); disparadores y anti-patrones del Protocolo 10x generalizados (herramienta/plataforma/método en vez de framework/training config); $200/día → 200 €/día; enlazado con el cierre-en-chat del /brainstorming adaptado («el resumen final aprobado es la semilla del build plan»); commit condicionado a «si el proyecto usa git»; añadida una línea al Protocolo de Documentación indicando que el build plan mande al ejecutor usar `/doc-nueva` y `/doc-actualizar`; «Section 11» (resto de un proyecto antiguo) → «el Registro de Sesiones».
+- **Estado:** ⏳ pendiente de revisión de Marc
+- **Última actualización:** 2026-07-13 (creado)
 
 ### `prepara-investigacion`
 
@@ -135,6 +144,7 @@ Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantal
 2. **`artifact-design` como herramienta de decisión visual (nota de Marc, 2026-07-13):** en `brainstorming` y/o `planifica`, integrar el skill `artifact-design` (viene de serie con Claude Code) para que, en planificaciones difíciles, el agente cree un artifact tipo infografía QUE AYUDE A TOMAR DECISIONES dentro de la planificación inicial. Contexto: Tere es más de leer, Jesús es más visual — el apoyo visual le ayuda en el brainstorming. Esto además **sustituye** al «Visual Companion» de Superpowers (que dependía de infraestructura del plugin y se quita).
 3. **Nombres completos de Jesús y Tere** para el registro anti-errores de transcripción de `/destila` — pendiente de que Marc los pase.
 4. **PERSONA conductora de la tríada (nota de Marc, 2026-07-13) — SE CREA AL FINAL DEL PROCESO:** redactar un documento de persona para los ordenadores de Jesús y Tere — será la 4.ª de su sistema de personas (su Claude Code, igual que el de Marc, pregunta al inicio de sesión qué persona cargar). Debe saber **conducir la tríada de agentes de principio a fin**: cuándo activar `/planifica`, cómo llevar los prompts al satélite y traer los resultados, cómo arrancar sesiones ejecutoras frescas, cuándo cerrar con `/continuia`. Claude redacta el documento (propuesta: guardarlo en `personas/` dentro de este repo — `install.sh` no toca esa carpeta); Marc lo instala localmente en su sistema de personas. Esto resuelve también la línea «PERSONA: CLAUDEDEV» de la plantilla de traspaso de `continuia` → apuntará a esta persona nueva.
+   **Segunda dimensión — igual de importante (brief de Marc, 2026-07-13, capturar la esencia SIN transcribir literalmente):** Jesús y Tere son muy capaces pero nuevos en este sistema. A veces aparecen creencias limitantes («esto es demasiado grande para mí», «yo nunca podría construir algo así») y pueden sentirse intimidados — cuando la realidad es que han construido cosas enormes: un colegio grande (dos edificios), una empresa durante ~40 años, y llevan con la IA desde el primer día. Tienen 70 años; sus creencias limitantes son distintas de las de Marc (él no duda de poder construir cualquier cosa con IA; ellos jamás dudarían de poder construir un colegio — cada uno tiene las suyas). La persona debe, por tanto: (1) **dominar la operación de la tríada** de principio a fin; y (2) **guiarlos, animarlos y ponérselo fácil** — no solo animar: guiar activamente, explicar con calma qué se está haciendo y por qué, celebrar los avances, y recordarles (cuando toque, sin ser pesada) que construir cosas grandes es exactamente lo que llevan haciendo toda la vida. Para Marc el sistema es casi un sexto sentido — una extensión de sí mismo porque lo construyó; para ellos es territorio nuevo. La persona es el puente.
 5. **Remoto GitHub:** `surfvani/jesus-tere-powerups`, **privado** — se crea y se hace el primer push cuando Marc apruebe el primer skill.
 
 ---
