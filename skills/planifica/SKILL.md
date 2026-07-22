@@ -1,6 +1,6 @@
 ---
 name: planifica
-description: Usar cuando Jesús o Tere quieran planificar o diseñar un proyecto nuevo, una iniciativa, una campaña, un sistema o una mejora importante ANTES de ejecutarla — el skill te pone en modo agente planificador (discutir el concepto vía /brainstorming, proponer investigaciones profundas donde aporten, y después crear un documento de build plan que contiene todas las instrucciones para los agentes siguientes: especificación de la lista de TODOs, checkpoints de investigación 🔬, Protocolo de Continuidad Entre Sesiones, Registro de Sesiones, Protocolo de Documentación con mantenimiento del DOCUMENTATION.md, y la Regla del Multiplicador 10x) de forma que el siguiente agente de IA pueda ejecutar solo con leer el documento. No usar para peticiones de ejecución directa donde el usuario diga explícitamente «hazlo directamente» o «ejecuta esto».
+description: Usar cuando Jesús o Tere quieran planificar o diseñar un proyecto nuevo, una iniciativa, una campaña, un curso, un lanzamiento, un sistema de contenido o una mejora importante ANTES de ejecutarla — el skill te pone en modo agente planificador (discutir el concepto vía /brainstorming, proponer investigaciones profundas donde aporten, y después crear un documento de build plan que contiene todas las instrucciones para los agentes siguientes: especificación de la lista de TODOs, checkpoints de investigación 🔬, Protocolo de Continuidad Entre Sesiones, Registro de Sesiones, Protocolo de Documentación con mantenimiento del DOCUMENTATION.md, y la Regla del Multiplicador 10x) de forma que el siguiente agente de IA pueda ejecutar solo con leer el documento. No usar para peticiones de ejecución directa donde el usuario diga explícitamente «hazlo directamente» o «ejecuta esto».
 ---
 
 ARRIBA TE HE DADO LO QUE YO – EL USUARIO, CON MI CONOCIMIENTO Y MI VISIÓN DE HACIA DÓNDE VAMOS – TENGO EN MENTE (EN OTRAS PALABRAS: ESTAS SON LAS IDEAS INICIALES SOBRE LAS QUE HAY QUE CONSTRUIR). ESTE ES EL PROCESO A PARTIR DE AQUÍ:
@@ -71,6 +71,7 @@ Instruye a la siguiente IA para que haga el trabajo exactamente como te he dicho
 
 Además, en el documento – donde corresponda – instruye a la IA para que pida al usuario investigaciones profundas si alguna implementación se beneficiaría de conocimiento duramente ganado o de la comunidad.
 - Por ejemplo... digamos que vamos a lanzar una campaña para captar familias nuevas, y la plataforma concreta que usemos podría configurarse de una forma que duplica el alcance con el mismo presupuesto... o mejor aún, que automatiza lo que íbamos a hacer a mano y nos lleva de semanas de trabajo a un par de días. Una diferencia enorme. Es solo un ejemplo, pero esta forma de pensar debe promoverse e incentivarse.
+- Otro ejemplo: antes de implantar algo que ya se ha implantado en otros sitios — p. ej., programas de formación en IA en colegios — investiga quién lo implantó con éxito Y quién fracasó. Los referentes ganadores salen de los éxitos; los fracasos enseñan qué NO hacer y qué errores evitar. Aprender de los dos lados es parte del multiplicador.
 - Mencionarlo varias veces debe considerarse buena práctica.
 - Adaptar la recomendación a cada caso de uso es el enfoque correcto. Identifica los puntos clave donde una investigación profunda daría los mayores multiplicadores y sugiere qué investigar, por qué y cómo enfocarlo.
 - Incluye el Protocolo de Investigación Profunda (al final del documento) — Un principio de trabajo completo que explique la «Regla del Multiplicador 10x». Instruye a la IA a identificar proactivamente los momentos donde el conocimiento de la comunidad / duramente ganado podría acelerar drásticamente el trabajo, y a preguntar siempre al usuario antes de continuar con valores por defecto ingenuos. Incluye ejemplos concretos adaptados al proyecto.
@@ -96,6 +97,7 @@ Además, si la ejecución va a ocurrir a lo largo de varias sesiones (1 sesión 
 Sesiones siguientes: haz solo actualizaciones dirigidas (herramienta Edit, no reescritura completa), añade archivos/trampas/valores nuevos, actualiza las descripciones que cambien, elimina SOLO contenido genuinamente obsoleto con un objetivo de reducción del 1%, y nunca elimines problemas resueltos ni decisiones de arquitectura.
 Verificación: «¿Es este el mismo doc pero con actualizaciones?» y «¿Podría una IA nueva continuar el trabajo solo con este doc?»
 Incluye una checklist interna para que la IA la siga al actualizar. Avisos críticos: no te saltes información que cree falta de contexto, no seas tan esquemático que se pierda contexto, no lo infles con relleno — mantenlo apretado y eficiente en tokens.
+Para proyectos que no son de software (cursos, campañas, lanzamientos, sistemas de contenido): adapta las secciones 1-3 a (1) Inventario de materiales y recursos, (2) Mapa del flujo de trabajo — el proceso de punta a punta y qué pasa dónde, (3) Herramientas y accesos — plataformas, cuentas, dónde viven las credenciales. Las secciones 4-6 aplican sin cambios.
 (En este sistema existen los skills /doc-nueva y /doc-actualizar — indica en el build plan que el agente ejecutor los use para crear y actualizar el DOCUMENTATION.md.)
 
 
@@ -115,6 +117,8 @@ DISPARADOR: Antes de implementar cualquier tarea que implique:
 - Elección de herramienta o plataforma
 - Diseño del método o del enfoque de trabajo
 - Montaje de infraestructura o del entorno
+- Decisiones de proveedor, precios, lanzamiento o plan de estudios
+- Cualquier cosa ya implantada en otros sitios de la que se pueda aprender — investiga las implantaciones que salieron bien Y las que fracasaron; los fracasos enseñan qué NO hacer
 - Cualquier decisión que condicione el trabajo futuro
 
 

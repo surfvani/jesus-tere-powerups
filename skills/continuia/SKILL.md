@@ -58,15 +58,15 @@ Antes de escribir nada, propón tres opciones de alcance para lo que la siguient
 
 1. **Relajado** — [descripción del alcance en 1-2 frases, en lenguaje llano]
    Consigue: [qué se termina en concreto]
-   Pros/contras: [...]. Estimación de tokens: ~Xk.
+   Pros/contras: [una línea]. Estimación de tokens: ~Xk.
 
 2. **Realista** (RECOMENDADO) — [descripción del alcance en 1-2 frases, en lenguaje llano]
    Consigue: [qué se termina en concreto]
-   Pros/contras: [...]. Estimación de tokens: ~Xk.
+   Pros/contras: [una línea]. Estimación de tokens: ~Xk.
 
 3. **Apretando** — [descripción del alcance en 1-2 frases, en lenguaje llano]
    Consigue: [qué se termina en concreto]
-   Pros/contras: [...] (presupuesto de ~180k tokens). Estimación de tokens: ~Xk+.
+   Pros/contras: [una línea — avisa si fuerza el presupuesto de ~180k tokens]. Estimación de tokens: ~Xk+.
    ¿Riesgos?
 
 ¿Cuál para la siguiente sesión?
@@ -190,7 +190,7 @@ Si algo del doc del plan contradice lo que ves en los archivos o en tu contexto,
 
 1) LEE ENTEROS LOS DOCUMENTOS DE LA LECTURA OBLIGATORIA ANTES DE TOCAR NADA
 
-2) CUANDO TERMINES LA LECTURA: PROPÓN TU PLAN DE LA SESIÓN EN EL CHAT (lista corta de tareas) Y ESPERA EL OK DEL USUARIO ANTES DE TOCAR NADA
+2) CUANDO TERMINES LA LECTURA: PROPÓN TU PLAN DE LA SESIÓN EN EL CHAT (lista corta de tareas), SEÑALA TUS 2-3 ASUNCIONES MÁS DUDOSAS (cosas que has decidido sin que el usuario las dijera) Y ESPERA EL OK EXPLÍCITO DEL USUARIO ANTES DE TOCAR NADA
 
 3) REGLAS DE TRABAJO DE LA SESIÓN:
 - Antes de editar cualquier documento importante, guarda una copia de seguridad (p. ej. `nombre.md.copia_AAAA-MM-DD`)
