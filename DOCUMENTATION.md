@@ -15,11 +15,13 @@ jesus-tere-powerups/
 └── skills/               ← todas las habilidades del sistema, en español
     ├── brainstorming/SKILL.md
     ├── continuia/SKILL.md
+    ├── deacuerdo/SKILL.md
     ├── destila/SKILL.md
     ├── doc-actualizar/SKILL.md
     ├── doc-nueva/SKILL.md
     ├── planifica/SKILL.md
-    └── prepara-investigacion/SKILL.md
+    ├── prepara-investigacion/SKILL.md
+    └── simplll/SKILL.md
 ```
 
 ---
@@ -32,8 +34,14 @@ traducidas, sin jerga de programación, y generalizadas para cualquier tipo de
 proyecto (marketing del colegio, SEO de la web, captación de alumnos, plan de
 introducción de la IA en el colegio…).
 
+Desde 2026-07-16, el sistema lo comparte también **Ali** (cofundadora de
+Cinematic Composing junto a Marc; perfil más avanzado, sin relación con el
+colegio) — por eso las descriptions de los skills hablan de «el usuario» en vez
+de nombres concretos. La persona TRIADAAGENTES sigue siendo específica de Jesús
+y Tere: Ali no la carga (si hace falta, se creará una variante para ella).
+
 Se construye en el ordenador de Marc y se instala en los ordenadores de Jesús y
-Tere clonando este repositorio y ejecutando `./install.sh`. Para las
+Tere (y de Ali) clonando este repositorio y ejecutando `./install.sh`. Para las
 actualizaciones: Marc edita aquí → `./update.sh` → sus ordenadores ejecutan
 `./pull.sh`.
 
@@ -116,6 +124,14 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 - **Estado:** ✅ aprobado y publicado
 - **Última actualización:** 2026-07-16 (retro-porte de la pasada Fable 5 del original inglés: disparadores del Protocolo 10x ampliados — proveedores, precios, lanzamientos, planes de estudio, y el principio de «éxitos Y fracasos» con el ejemplo de programas de IA en colegios; adaptación del Protocolo de Documentación para proyectos que no son de software — Inventario de materiales / Mapa de flujo / Herramientas y accesos; description ampliada con curso, lanzamiento y sistema de contenido). Prior: 2026-07-13 (creado)
 
+### `simplll`
+
+- **Original:** `simplll` (marc-jovani-powerups, pasada Fable 5 de 2026-07-16) — nombre de marca conservado a petición de Marc
+- **Qué hace:** explica el Qué / Cómo / Por qué en lenguaje llano, listo para decidir — listas cortas, sin párrafos densos, sin tecnicismos, sin eliminar información. Se dispara a petición («explícamelo fácil») o automáticamente en la puerta, tras la exploración de una sesión ejecutora, entregando la explicación de inmediato (no la ofrece: la da).
+- **Adaptaciones aplicadas:** perfil del destinatario neutralizado para servir a Jesús, Tere y Ali — el original describe el perfil de Marc (compositor que ha creado plugins y apps comerciales); aquí es «persona no técnica pero muy capaz, que dirige proyectos y trabaja con IA a diario».
+- **Estado:** ✅ publicado
+- **Última actualización:** 2026-07-16 (creado)
+
 ### `prepara-investigacion`
 
 - **Original:** `research-prompt-instructions` (marc-jovani-powerups) — ex-snippet "resss"
@@ -154,7 +170,15 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 - **Qué hace:** cierra una sesión de trabajo con traspaso limpio en 9 pasos: lee el build plan ENTERO, propone 3 alcances para la siguiente sesión (relajado/realista/apretando) y espera la elección, escribe la entrada del Registro de Sesiones (plantilla estricta, solo-añadir), marca hitos, invoca `/doc-actualizar`, guarda todo, imprime el prompt de traspaso en el chat (nunca en el doc), lo copia al portapapeles y espera la aprobación.
 - **Adaptaciones aplicadas:** traducción íntegra; ⚠️ regla dura n.º 7 invertida: «English (US) for everything» → **español para todo**; ⚠️ cierre de la plantilla de traspaso EN 3 TIEMPOS (Opción A elegida por Marc, 2026-07-13): (1) LEE ENTEROS los docs de la lectura obligatoria → (2) PROPÓN TU PLAN en el chat y ESPERA el OK → (3) reglas de trabajo: copia de seguridad antes de editar documentos importantes + no salirse del alcance de la sesión + cerrar con /continuia — reconstruye el valor de whatdocs→defcode en clave documental; ⚠️ línea PERSONA: «CLAUDEDEV» → **«TRIADAAGENTES»** (nombre fijado por Marc, 2026-07-13); eliminadas las referencias a «Active State» y filas 🚨 (coherencia con la decisión de planifica); eliminada la línea de `/frontend-design`; `/doc-update-project` → `/doc-actualizar` y `/research-prompt-instructions` → `/prepara-investigacion`; ⚠️ GIT ELIMINADO del flujo (decisión de Marc, 2026-07-13: sus proyectos no usan git ni tendrán remoto — el repo de distribución `jesus-tere-powerups` SÍ sigue en git, operado por Marc): fuera los comandos git, el commit, la pregunta de push (paso 8.5 entero) y el bloque ESTADO DEL REPO de la plantilla — el «deshacer» lo cubre la regla de copia de seguridad del cierre; ⚠️ LEAN/DEEP ELIMINADO (decisión de Marc, 2026-07-13): siempre lectura ENTERA del build plan — el flujo pasa de 10 a 9 pasos; frases de activación de la description en español («cerramos», «haz el traspaso», «terminamos por hoy»…); «Marc» → «el usuario»; framing «non-developer con software comercial publicado» → «persona no técnica»; plantilla del Registro con commits condicionales y sin STASHED; TodoWrite → herramienta de tareas (TaskCreate).
 - **Estado:** ✅ aprobado y publicado
-- **Última actualización:** 2026-07-16 (retro-porte de la pasada Fable 5 del original inglés: el punto 2 del cierre en 3 tiempos incorpora la esencia de samepage-brainstorming — señalar las 2-3 asunciones más dudosas + OK EXPLÍCITO del usuario; marcadores de pros/contras de las opciones de alcance concretados a «una línea», con aviso de presupuesto en la opción Apretando). Prior: 2026-07-13 (creado)
+- **Última actualización:** 2026-07-16 (retro-porte de la pasada Fable 5 del original inglés: el punto 2 del cierre en 3 tiempos incorpora la esencia de samepage-brainstorming — señalar las 2-3 asunciones más dudosas + OK EXPLÍCITO del usuario; marcadores de pros/contras de las opciones de alcance concretados a «una línea», con aviso de presupuesto en la opción Apretando; 2.ª pasada del mismo día: el punto 2 del cierre en 3 tiempos ahora ordena invocar /simplll + /deacuerdo — LA PUERTA — tras la exploración, y la tabla de fallos cubre el caso de que esos skills no estén instalados). Prior: 2026-07-13 (creado)
+
+### `deacuerdo`
+
+- **Original:** `samepage-brainstorming` (marc-jovani-powerups, pasada Fable 5 de 2026-07-16) — nombre elegido por Marc
+- **Qué hace:** LA PUERTA DEL ACUERDO — conversación obligatoria de aclaración + brainstorming tras la exploración de cada sesión ejecutora (o standalone ante decisiones de peso): anuncia la puerta, expone las 2-3 asunciones más dudosas, una pregunta de decisión por mensaje, «di qué cambió» tras cada respuesta, mínimo 3 intercambios (mejor 5) contados en silencio, cierre solo con GO explícito, con apoyo visual vía artifact-design cuando ver gana a leer.
+- **Adaptaciones aplicadas:** en vez de dispararse al final de /whatdocs y bloquear /defcode (no existen en este sistema), se dispara cuando lo ordena el prompt de traspaso de /continuia tras la lectura obligatoria, y bloquea «tocar cualquier documento»; modos por usuario: Jesús visual / Tere lectora / Ali directa; tras el GO recuerda las reglas de la sesión (copia de seguridad + alcance).
+- **Estado:** ✅ publicado
+- **Última actualización:** 2026-07-16 (creado)
 
 ### `destila`
 
@@ -178,6 +202,8 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 | 6 | `planifica` | plan-build | ✅ aprobado y publicado |
 | 7 | `continuia` | handoff-continuia | ✅ aprobado y publicado |
 | 8 | PERSONA `TRIADAAGENTES` | CLAUDEDEV como referencia de formato | ✅ aprobada — `install.sh` la enlaza automáticamente en `~/.claude/personas/` |
+| 9 | `simplll` | simplll (pasada Fable 5) | ✅ publicado (2026-07-16) |
+| 10 | `deacuerdo` | samepage-brainstorming (pasada Fable 5) | ✅ publicado (2026-07-16) |
 
 Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantalla → Marc revisa → siguiente.
 
@@ -191,7 +217,7 @@ Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantal
 4. **PERSONA conductora de la tríada (nota de Marc, 2026-07-13) — SE CREA AL FINAL DEL PROCESO:** redactar un documento de persona para los ordenadores de Jesús y Tere — **nombre fijado por Marc: TRIADAAGENTES** — será la 4.ª de su sistema de personas (su Claude Code, igual que el de Marc, pregunta al inicio de sesión qué persona cargar). Debe saber **conducir la tríada de agentes de principio a fin**: cuándo activar `/planifica`, cómo llevar los prompts al satélite y traer los resultados, cómo arrancar sesiones ejecutoras frescas, cuándo cerrar con `/continuia`. Claude redacta el documento (propuesta: guardarlo en `personas/` dentro de este repo — `install.sh` no toca esa carpeta); Marc lo instala localmente en su sistema de personas. Esto resuelve también la línea «PERSONA: CLAUDEDEV» de la plantilla de traspaso de `continuia` → apuntará a esta persona nueva.
    **Segunda dimensión — igual de importante (brief de Marc, 2026-07-13, capturar la esencia SIN transcribir literalmente):** Jesús y Tere son muy capaces pero nuevos en este sistema. A veces aparecen creencias limitantes («esto es demasiado grande para mí», «yo nunca podría construir algo así») y pueden sentirse intimidados — cuando la realidad es que han construido cosas enormes: un colegio grande (dos edificios), una empresa durante ~40 años, y llevan con la IA desde el primer día. Tienen 70 años; sus creencias limitantes son distintas de las de Marc (él no duda de poder construir cualquier cosa con IA; ellos jamás dudarían de poder construir un colegio — cada uno tiene las suyas). La persona debe, por tanto: (1) **dominar la operación de la tríada** de principio a fin; y (2) **guiarlos, animarlos y ponérselo fácil** — no solo animar: guiar activamente, explicar con calma qué se está haciendo y por qué, celebrar los avances, y recordarles (cuando toque, sin ser pesada) que construir cosas grandes es exactamente lo que llevan haciendo toda la vida. Para Marc el sistema es casi un sexto sentido — una extensión de sí mismo porque lo construyó; para ellos es territorio nuevo. La persona es el puente. → **CREADA Y APROBADA (2026-07-13):** `personas/TRIADAAGENTES.md` — `install.sh` la enlaza automáticamente en `~/.claude/personas/`; si el hook del selector de sus ordenadores tiene la lista de personas fija, Marc la añade a mano al hook.
 5. **Remoto GitHub:** `surfvani/jesus-tere-powerups` — → **HECHO** (repo creado y publicado el 2026-07-13). → Ese mismo día Marc lo hizo **PÚBLICO** para que la instalación en sus ordenadores no necesite tokens ni cuentas de GitHub.
-6. **Retro-portes desde el repo inglés (2026-07-16):** la pasada de mejora con Fable 5 sobre marc-jovani-powerups creó allí los skills `simplll` (explicación en llano) y `samepage-brainstorming` (puerta de claridad + alineamiento tras /whatdocs, /defcode bloqueado hasta un GO explícito). **Decisión: NO se crean equivalentes españoles como skills** — el sistema de J&T ya encarna ambos conceptos: la persona TRIADAAGENTES impone lenguaje llano siempre, y las puertas existen en /brainstorming (PUERTA-DURA) y en el cierre en 3 tiempos de /continuia (ahora enriquecido con la exposición de asunciones dudosas + OK explícito). Se portó lo aplicable a /planifica (disparadores 10x ampliados, éxitos-y-fracasos, documentación no-software) y /continuia. Redirigir si Marc prefiere skills separados.
+6. **Retro-portes desde el repo inglés (2026-07-16):** la pasada de mejora con Fable 5 sobre marc-jovani-powerups creó allí los skills `simplll` (explicación en llano) y `samepage-brainstorming` (puerta de claridad + alineamiento tras /whatdocs, /defcode bloqueado hasta un GO explícito). **Decisión: NO se crean equivalentes españoles como skills** — el sistema de J&T ya encarna ambos conceptos: la persona TRIADAAGENTES impone lenguaje llano siempre, y las puertas existen en /brainstorming (PUERTA-DURA) y en el cierre en 3 tiempos de /continuia (ahora enriquecido con la exposición de asunciones dudosas + OK explícito). Se portó lo aplicable a /planifica (disparadores 10x ampliados, éxitos-y-fracasos, documentación no-software) y /continuia. → **REVERTIDA ese mismo día por Marc: SÍ se crean** — `/simplll` (nombre de marca conservado) y `/deacuerdo` (nombre elegido por Marc). Aclaración clave de Marc: la puerta NO ocurre en el momento de /continuia — /continuia solo ESCRIBE la orden en el prompt de traspaso; los skills se cargan y ejecutan en la SESIÓN SIGUIENTE, justo después de terminar la fase de exploración (la lectura obligatoria), antes de tocar nada. Además, Marc sumó a **Ali** como tercera usuaria del sistema (ver Propósito) — descriptions neutralizadas a «el usuario»; los ejemplos de colegio se quedan como ilustraciones.
 7. **Git en los proyectos de Jesús y Tere:** → **RESUELTO (2026-07-13): NO.** Sin remoto ni planes de tenerlo, un git local solo añadía fricción. Sus carpetas de proyecto van sin git; la función de «deshacer» la cubre la copia de seguridad antes de editar (regla del cierre del traspaso de continuia). El repo de distribución sí sigue en git.
 
 ---

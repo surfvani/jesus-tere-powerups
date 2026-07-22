@@ -1,6 +1,6 @@
 ---
 name: doc-nueva
-description: Usar cuando Jesús o Tere quieran crear un DOCUMENTATION.md desde cero para un proyecto nuevo — el skill produce un documento Markdown completo que empieza con la sección bloqueada ⚠️ REFERENCIA CRÍTICA DE ESTRUCTURA Y ARQUITECTURA, explica la estructura de archivos (incluidos los grupos de archivos que se dividieron en partes más pequeñas), y da a una futura sesión de IA el contexto suficiente para hacer preguntas informadas. No usar para actualizar una documentación que ya existe (para eso está /doc-actualizar).
+description: Usar cuando el usuario quiera crear un DOCUMENTATION.md desde cero para un proyecto nuevo — el skill produce un documento Markdown completo que empieza con la sección bloqueada ⚠️ REFERENCIA CRÍTICA DE ESTRUCTURA Y ARQUITECTURA, explica la estructura de archivos (incluidos los grupos de archivos que se dividieron en partes más pequeñas), y da a una futura sesión de IA el contexto suficiente para hacer preguntas informadas. No usar para actualizar una documentación que ya existe (para eso está /doc-actualizar).
 ---
 
 Crea un archivo de documentación.

@@ -188,16 +188,16 @@ PREGUNTAS PARA EL USUARIO AL EMPEZAR (antes de tocar nada):
 
 Si algo del doc del plan contradice lo que ves en los archivos o en tu contexto, PARA y pregunta al usuario antes de improvisar. El doc del plan es la autoridad.
 
-1) LEE ENTEROS LOS DOCUMENTOS DE LA LECTURA OBLIGATORIA ANTES DE TOCAR NADA
+1) EXPLORACIÓN: LEE ENTEROS LOS DOCUMENTOS DE LA LECTURA OBLIGATORIA ANTES DE TOCAR NADA
 
-2) CUANDO TERMINES LA LECTURA: PROPÓN TU PLAN DE LA SESIÓN EN EL CHAT (lista corta de tareas), SEÑALA TUS 2-3 ASUNCIONES MÁS DUDOSAS (cosas que has decidido sin que el usuario las dijera) Y ESPERA EL OK EXPLÍCITO DEL USUARIO ANTES DE TOCAR NADA
+2) CUANDO TERMINES LA LECTURA, LA PUERTA ESTÁ ABIERTA: INVOCA /simplll (explica en llano lo que has entendido y lo que propones) Y DESPUÉS /deacuerdo (la sesión de aclaración + brainstorming). NO SE TOCA NADA HASTA QUE LA PUERTA SE CIERRE CON UN GO EXPLÍCITO DEL USUARIO
 
-3) REGLAS DE TRABAJO DE LA SESIÓN:
+3) REGLAS DE TRABAJO DE LA SESIÓN (tras el GO):
 - Antes de editar cualquier documento importante, guarda una copia de seguridad (p. ej. `nombre.md.copia_AAAA-MM-DD`)
 - No te salgas del alcance de TU TAREA EN ESTA SESIÓN — si descubres algo grande, apúntalo y díselo al usuario; no te pongas a arreglarlo sobre la marcha
 - CERRARÁS LA SESIÓN CON /continuia
 
-EMPIEZA AHORA POR EL PUNTO 1: LA LECTURA OBLIGATORIA
+EMPIEZA AHORA POR EL PUNTO 1: LA EXPLORACIÓN
 ````
 
 **Barandillas al rellenar esta plantilla:**
@@ -231,6 +231,7 @@ Después de imprimir el prompt de traspaso:
 | El doc del plan no tiene sección de Registro de Sesiones | El doc es anterior a la especificación actual de `/planifica`, o no lo creó `/planifica` | Pregunta al usuario — o se añade una sección de Registro de Sesiones según la plantilla de `/planifica`, o se saltan las actualizaciones del doc y solo se imprime el traspaso en el chat |
 | El seguimiento de hitos tiene un formato desconocido | El formato varía por proyecto | Pregunta al usuario cómo marca su seguimiento lo completado (✅, «HECHO», casilla, etc.) antes de actualizar |
 | El skill `/doc-actualizar` no está disponible | Este ordenador no lo tiene instalado | Pregunta al usuario. El usuario te dará el prompt exacto. |
+| Los skills `/simplll` o `/deacuerdo` no están disponibles | Ordenador sin actualizar | Pide al usuario ejecutar `cd ~/jesus-tere-powerups && ./pull.sh` — o aplica la puerta a mano: explica en llano, expón tus asunciones dudosas, pregunta de una en una y espera el GO explícito |
 | Hay archivos modificados que esta sesión no tocó | Otra sesión pudo dejarlos a medias | PARA. Enséñaselo al usuario. No los toques por tu cuenta — pregunta. |
 | El usuario eligió un alcance que requiere investigación (hay un checkpoint 🔬 en el camino) | Aplica el Protocolo de Investigación Profunda de planifica | Construye el prompt de traspaso con el recordatorio 🔬 + la invocación de `/prepara-investigacion`. Marca la investigación como primera tarea. |
 

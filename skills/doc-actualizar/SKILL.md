@@ -1,6 +1,6 @@
 ---
 name: doc-actualizar
-description: Usar cuando Jesús o Tere quieran actualizar un DOCUMENTATION.md existente después de una sesión de trabajo, una implementación, un arreglo o una mejora — conserva toda la información crítica, añade los aprendizajes nuevos y los obstáculos superados con sus soluciones, elimina solo el contenido totalmente obsoleto, y busca quedar ~1% más corto para que una sesión de IA nueva pueda retomar el trabajo sin pérdida de contexto. No usar para crear una documentación desde cero (para eso está /doc-nueva).
+description: Usar cuando el usuario quiera actualizar un DOCUMENTATION.md existente después de una sesión de trabajo, una implementación, un arreglo o una mejora — conserva toda la información crítica, añade los aprendizajes nuevos y los obstáculos superados con sus soluciones, elimina solo el contenido totalmente obsoleto, y busca quedar ~1% más corto para que una sesión de IA nueva pueda retomar el trabajo sin pérdida de contexto. No usar para crear una documentación desde cero (para eso está /doc-nueva).
 ---
 
 bien, vamos con la documentación

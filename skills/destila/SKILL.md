@@ -1,6 +1,6 @@
 ---
 name: destila
-description: Usar cuando Jesús o Tere quieran destilar cualquier transcript largo (clase o formación, reunión/sesión de trabajo, estrategia/brainstorm, retrospectiva, llamada comercial o de descubrimiento, sesión de trabajo con un agente de IA, o registro mixto) en un documento estructurado y sin fabricación — el skill detecta solo el registro del contenido y adapta el formato de salida. No usar para notas cortas.
+description: Usar cuando el usuario quiera destilar cualquier transcript largo (clase o formación, reunión/sesión de trabajo, estrategia/brainstorm, retrospectiva, llamada comercial o de descubrimiento, sesión de trabajo con un agente de IA, o registro mixto) en un documento estructurado y sin fabricación — el skill detecta solo el registro del contenido y adapta el formato de salida. No usar para notas cortas.
 ---
 
 # Destilación General de Contenido Instructivo, Conversaciones y Sesiones de Trabajo
