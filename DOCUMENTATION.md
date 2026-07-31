@@ -11,6 +11,7 @@ jesus-tere-powerups/
 ├── update.sh             ← desde el ordenador donde se edita (Marc): commit + push a GitHub
 ├── pull.sh               ← desde los ordenadores de Jesús y Tere: recibir actualizaciones (auto-ejecuta install.sh)
 ├── personas/             ← personas para su selector (install.sh las enlaza automáticamente en ~/.claude/personas/)
+│   ├── GENERICO.md       ← persona genérica: sin instrucciones específicas + Registro por defecto
 │   └── TRIADAAGENTES.md  ← la persona conductora de la tríada (la 4.ª de su selector)
 └── skills/               ← todas las habilidades del sistema, en español
     ├── brainstorming/SKILL.md
@@ -82,6 +83,23 @@ Hola. Vamos a instalar el sistema de la Tríada de Agentes en este ordenador. Ha
 
 5. Para terminar, dime en 3 líneas y en lenguaje llano: qué ha quedado instalado, y que el usuario debe cerrar esta sesión y abrir una nueva — en la nueva, las habilidades ya estarán activas y podrá elegir la persona TRIADAAGENTES al arrancar.
 ```
+
+---
+
+## Personas: qué sustituye el repo y qué no
+
+`install.sh` recorre **solo** los archivos de `personas/` de este repo. Regla:
+
+| Persona en su ordenador | Qué le pasa al instalar / actualizar |
+|---|---|
+| Está en el repo (`GENERICO`, `TRIADAAGENTES`) | **La manda el repo.** Si allí había un archivo real, se guarda una copia de seguridad (`NOMBRE.md.copia_AAAA-MM-DD`) y se sustituye por un enlace al repo. A partir de ahí cada `./pull.sh` la actualiza sola. |
+| NO está en el repo (p. ej. `ADMISIONESISP`, `PROTESISTERE`) | **Intacta.** Ni se lee, ni se mueve, ni se borra. Son suyas. |
+
+Es idempotente: en la segunda ejecución la persona ya es un enlace, así que no se
+crea otra copia de seguridad. Las copias no se borran nunca automáticamente.
+
+**Selector de personas:** si el hook del selector de su ordenador tiene la lista
+escrita a mano, una persona nueva del repo hay que añadirla también al hook.
 
 ---
 
@@ -204,6 +222,7 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 | 8 | PERSONA `TRIADAAGENTES` | CLAUDEDEV como referencia de formato | ✅ aprobada — `install.sh` la enlaza automáticamente en `~/.claude/personas/` |
 | 9 | `simplll` | simplll (pasada Fable 5) | ✅ publicado (2026-07-16) |
 | 10 | `deacuerdo` | samepage-brainstorming (pasada Fable 5) | ✅ publicado (2026-07-16) |
+| 11 | PERSONA `GENERICO` | CLAUDEREG (la persona «sin preferencias» de Marc) | ✅ creada (2026-07-31) — sin instrucciones propias más allá del Registro por defecto; no anuncia su contenido al cargarse |
 
 Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantalla → Marc revisa → siguiente.
 

@@ -141,6 +141,15 @@ for skill_path in "$SKILLS_SRC"/*/; do
 done
 
 # ────────── personas: enlazar personas/*.md en ~/.claude/personas/ ──────────
+#
+# Solo se tocan las personas QUE VIENEN EN EL REPO. Las personas propias del
+# ordenador (las que no están en personas/) se quedan intactas — nunca se leen,
+# ni se mueven, ni se borran.
+#
+# Si en ~/.claude/personas/ ya hay un archivo real con el nombre de una persona
+# del repo, MANDA EL REPO: se guarda una copia de seguridad al lado
+# (nombre.md.copia_AAAA-MM-DD) y se sustituye por el enlace al repo. A partir de
+# ahí, cada ./pull.sh actualiza esa persona automáticamente.
 PERSONAS_SRC="$REPO_DIR/personas"
 PERSONAS_DEST="$HOME/.claude/personas"
 
@@ -161,8 +170,17 @@ if [[ -d "$PERSONAS_SRC" ]]; then
         ln -s "$persona_file" "$target"
       fi
     elif [[ -e "$target" ]]; then
-      echo "  ERROR: $target existe y NO es un enlace simbólico. Me niego a sobrescribirlo." >&2
-      exit 1
+      # Archivo real con el nombre de una persona del repo: manda el repo.
+      # Copia de seguridad al lado y se sustituye por el enlace.
+      backup="$target.copia_$(date +%Y-%m-%d)"
+      n=1
+      while [[ -e "$backup" ]]; do
+        backup="$target.copia_$(date +%Y-%m-%d)-$n"
+        n=$((n + 1))
+      done
+      mv "$target" "$backup"
+      ln -s "$persona_file" "$target"
+      echo "  REEMPL persona (copia de seguridad: $(basename "$backup"))"
     else
       ln -s "$persona_file" "$target"
       echo "  LINK   persona -> $PERSONAS_DEST"
