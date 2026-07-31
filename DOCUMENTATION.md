@@ -10,6 +10,8 @@ jesus-tere-powerups/
 ├── install.sh            ← instalación en un ordenador nuevo: enlaza cada skill en ~/.claude/skills/
 ├── update.sh             ← desde el ordenador donde se edita (Marc): commit + push a GitHub
 ├── pull.sh               ← desde los ordenadores de Jesús y Tere: recibir actualizaciones (auto-ejecuta install.sh)
+├── global/               ← contenido para ~/.claude/CLAUDE.md (reglas globales: se cargan en TODAS las sesiones)
+│   └── REGISTRO.md       ← el Registro por defecto; install.sh lo mantiene entre marcadores
 ├── personas/             ← personas para su selector (install.sh las enlaza automáticamente en ~/.claude/personas/)
 │   ├── GENERICO.md       ← persona genérica: sin instrucciones específicas + Registro por defecto
 │   └── TRIADAAGENTES.md  ← la persona conductora de la tríada (la 4.ª de su selector)
@@ -86,20 +88,56 @@ Hola. Vamos a instalar el sistema de la Tríada de Agentes en este ordenador. Ha
 
 ---
 
-## Personas: qué sustituye el repo y qué no
+## Qué sustituye el repo y qué no
 
-`install.sh` recorre **solo** los archivos de `personas/` de este repo. Regla:
+Principio: **el repo manda sobre lo suyo y no toca nada más.** Se aplica en tres sitios.
+
+### 1. Personas (`personas/` → `~/.claude/personas/`)
+
+`install.sh` recorre **solo** los archivos de `personas/` de este repo.
 
 | Persona en su ordenador | Qué le pasa al instalar / actualizar |
 |---|---|
 | Está en el repo (`GENERICO`, `TRIADAAGENTES`) | **La manda el repo.** Si allí había un archivo real, se guarda una copia de seguridad (`NOMBRE.md.copia_AAAA-MM-DD`) y se sustituye por un enlace al repo. A partir de ahí cada `./pull.sh` la actualiza sola. |
 | NO está en el repo (p. ej. `ADMISIONESISP`, `PROTESISTERE`) | **Intacta.** Ni se lee, ni se mueve, ni se borra. Son suyas. |
 
-Es idempotente: en la segunda ejecución la persona ya es un enlace, así que no se
-crea otra copia de seguridad. Las copias no se borran nunca automáticamente.
-
 **Selector de personas:** si el hook del selector de su ordenador tiene la lista
 escrita a mano, una persona nueva del repo hay que añadirla también al hook.
+
+### 2. Reglas globales (`global/REGISTRO.md` → `~/.claude/CLAUDE.md`)
+
+`~/.claude/CLAUDE.md` se carga en **todas** las sesiones, se elija la persona que
+se elija — o ninguna. Por eso el Registro por defecto vive también aquí: si
+alguien trabaja con `ADMISIONESISP` o salta el selector, el registro sigue puesto.
+
+El repo mantiene ahí **un bloque delimitado**:
+
+```
+<!-- BEGIN jesus-tere-powerups — no editar a mano -->
+   …el Registro por defecto…
+<!-- END jesus-tere-powerups -->
+```
+
+| Situación | Qué hace `install.sh` |
+|---|---|
+| No existe `~/.claude/CLAUDE.md` | Lo crea con el bloque. |
+| Existe y ya tiene los marcadores | Sustituye **solo** lo de dentro. |
+| Existe y no tiene marcadores | Añade el bloque al final. |
+| No hay nada que cambiar | No toca el archivo ni hace copia. |
+
+**Todo lo que el usuario escriba fuera de los marcadores — antes o después — se
+conserva tal cual.** Para editar el bloque: se cambia `global/REGISTRO.md` en el
+repo, y el siguiente `./pull.sh` lo actualiza en sus ordenadores.
+
+### 3. Skills (`skills/` → `~/.claude/skills/`)
+
+Enlazados, como siempre. Sin cambios.
+
+---
+
+Todo es idempotente: en la segunda ejecución ya está todo en su sitio, así que no
+se crean copias nuevas. Las copias de seguridad no se borran nunca
+automáticamente — si sobran, se borran a mano.
 
 ---
 

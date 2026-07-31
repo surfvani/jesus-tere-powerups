@@ -188,9 +188,66 @@ if [[ -d "$PERSONAS_SRC" ]]; then
   done
 fi
 
+# ────────── bloque global en ~/.claude/CLAUDE.md ──────────
+#
+# ~/.claude/CLAUDE.md son las reglas globales: se cargan en TODAS las sesiones,
+# se elija la persona que se elija — o ninguna. El repo mantiene ahí UN bloque
+# delimitado por marcadores. Todo lo que el usuario haya escrito FUERA de los
+# marcadores se respeta: no se lee, no se mueve, no se borra.
+#
+#   - No existe el archivo          → se crea con el bloque.
+#   - Existe y ya tiene marcadores  → se sustituye SOLO lo de dentro.
+#   - Existe y no tiene marcadores  → el bloque se añade al final.
+#   - No hay nada que cambiar       → no se toca el archivo ni se hace copia.
+#
+# Antes de cualquier modificación real se guarda CLAUDE.md.copia_AAAA-MM-DD.
+
+GLOBAL_SRC="$REPO_DIR/global/REGISTRO.md"
+CLAUDE_MD="$HOME/.claude/CLAUDE.md"
+BEGIN_MARK="<!-- BEGIN jesus-tere-powerups — no editar a mano -->"
+END_MARK="<!-- END jesus-tere-powerups -->"
+
+if [[ -f "$GLOBAL_SRC" ]]; then
+  echo "→ bloque global: ~/.claude/CLAUDE.md"
+  mkdir -p "$(dirname "$CLAUDE_MD")"
+  tmp="$(mktemp "$(dirname "$CLAUDE_MD")/.jtp_claudemd.XXXXXX")"
+
+  if [[ ! -f "$CLAUDE_MD" ]]; then
+    { printf '%s\n' "$BEGIN_MARK"; cat "$GLOBAL_SRC"; printf '%s\n' "$END_MARK"; } > "$tmp"
+  elif grep -qF -- "$BEGIN_MARK" "$CLAUDE_MD" && grep -qF -- "$END_MARK" "$CLAUDE_MD"; then
+    awk -v b="$BEGIN_MARK" -v e="$END_MARK" -v f="$GLOBAL_SRC" '
+      $0 == b { print; while ((getline l < f) > 0) print l; close(f); skip = 1; next }
+      $0 == e { skip = 0 }
+      !skip   { print }
+    ' "$CLAUDE_MD" > "$tmp"
+  else
+    { cat "$CLAUDE_MD"; printf '\n'; printf '%s\n' "$BEGIN_MARK"; cat "$GLOBAL_SRC"; printf '%s\n' "$END_MARK"; } > "$tmp"
+  fi
+
+  if [[ -f "$CLAUDE_MD" ]] && cmp -s "$tmp" "$CLAUDE_MD"; then
+    echo "  OK     bloque ya al día (archivo intacto)"
+    rm -f "$tmp"
+  else
+    if [[ -f "$CLAUDE_MD" ]]; then
+      backup="$CLAUDE_MD.copia_$(date +%Y-%m-%d)"
+      n=1
+      while [[ -e "$backup" ]]; do
+        backup="$CLAUDE_MD.copia_$(date +%Y-%m-%d)-$n"
+        n=$((n + 1))
+      done
+      cp "$CLAUDE_MD" "$backup"
+      echo "  COPIA  $(basename "$backup")"
+    fi
+    mv "$tmp" "$CLAUDE_MD"
+    chmod 644 "$CLAUDE_MD"
+    echo "  ESCRITO bloque del Registro por defecto"
+  fi
+fi
+
 echo
 echo "Hecho."
 echo "  Skills:                 $SKILLS_DEST"
 echo "  Personas:               $PERSONAS_DEST"
+echo "  Reglas globales:        $CLAUDE_MD (solo el bloque entre marcadores)"
 echo "  Herramientas incluidas: $BIN_DEST"
 echo "  Venvs de skills:        $CONFIG_BASE/<nombre-skill>/venv (cuando hay requirements.txt)"
