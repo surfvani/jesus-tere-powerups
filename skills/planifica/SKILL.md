@@ -44,6 +44,24 @@ cuando todo esté claro (discusión con el usuario + resultados de investigació
 
 empieza planificando la estructura del documento
 después imprime la lista de temas/secciones aquí en el chat —> crea un todo
+
+  ---
+  6.5 AUTOEVALUACIÓN — PUERTA OBLIGATORIA. NO crees la estructura del documento hasta superar
+  esto.
+
+  El objetivo es crear un build plan que conserve TODA la información hablada, en un documento
+  fácil de leer y eficiente en tokens.
+  La estructura del plan no debe mostrar señales de estar sobredimensionada ni de tener relleno.
+
+  - ¿La estructura que he diseñado es demasiado densa y/o está sobredimensionada?
+  - ¿La estructura resulta demasiado compleja?
+  - ¿La última parte de la conversación pesa demasiado, y la primera parte de la conversación
+    ha quedado adelgazada? Eso estaría mal.
+
+  Ultrathink — piensa y trabaja con el máximo esfuerzo. Después responde a esas preguntas. Si
+  detectas cualquiera de estos problemas, rehaz la lista de la estructura.
+  ---
+
   después crea el documento solo con la estructura básica y marcadores de posición
   no crees el documento de instrucciones todo de golpe
   crea la primera parte del documento (sustituye el primer marcador por contenido —> primer elemento de la lista de tareas —> usa la herramienta Edit)
