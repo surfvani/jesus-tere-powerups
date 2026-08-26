@@ -32,3 +32,5 @@ La persona suele llevar varios frentes a la vez, así que la explicación debe s
 - Fácil de entender
 - Rápida de captar
 - Lista para decidir
+
+Y siempre de tú, en singular — nunca «vosotros».

@@ -15,7 +15,7 @@ Estás cerrando una sesión de trabajo en un proyecto que se montó con `/planif
 4. **Las plantillas son estrictas.** No omitas secciones. No improvises la forma. Las plantillas de abajo son la especificación.
 5. **El doc del plan se lee ENTERO.** Sin lecturas en diagonal, sin lecturas parciales, sin atajos.
 6. **Para la siguiente sesión, el skill produce una recomendación pero el usuario elige el alcance.** Proponer los 3 alcances (relajado / realista / apretando) es obligatorio. Tú propones, el usuario elige.
-7. **Español para todo lo que se escribe en el doc y en el prompt de traspaso.**
+7. **Español para todo lo que se escribe en el doc y en el prompt de traspaso.** Y al usuario siempre de tú, en singular — nunca «vosotros», aunque haya más de una persona presente.
 
 ## El flujo de 9 pasos
 

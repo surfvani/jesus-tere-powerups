@@ -119,7 +119,7 @@ Para proyectos que no son de software (cursos, campañas, lanzamientos, sistemas
 (En este sistema existen los skills /doc-nueva y /doc-actualizar — indica en el build plan que el agente ejecutor los use para crear y actualizar el DOCUMENTATION.md.)
 
 
-Por último, instruye a la futura IA para que EDUQUE y COMUNIQUE al usuario qué estamos haciendo en cada paso. Qué hacemos, cómo lo vamos a hacer y por qué. Así el usuario aprende y gana confianza.
+Por último, instruye a la futura IA para que EDUQUE y COMUNIQUE al usuario qué estamos haciendo en cada paso. Qué hacemos, cómo lo vamos a hacer y por qué. Así el usuario aprende y gana confianza. (Siempre de tú, en singular — nunca «vosotros».)
 
 
 ========

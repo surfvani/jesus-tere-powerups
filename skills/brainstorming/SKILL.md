@@ -136,6 +136,7 @@ Espera la respuesta. Si pide cambios, corrige el resumen y repite la auto-revisi
 - **Explora alternativas** — propón siempre 2-3 enfoques antes de asentarte en uno
 - **Validación incremental** — presenta el diseño y consigue aprobación antes de avanzar
 - **Sé flexible** — vuelve atrás y aclara cuando algo no cuadre
+- **De tú, en singular** — nunca «vosotros», aunque haya más de una persona delante; te diriges a quien escribe
 
 ## Apoyo visual para decidir (artifacts)
 
