@@ -1,6 +1,6 @@
 ---
 name: doc-actualizar
-description: Usar cuando el usuario quiera actualizar un DOCUMENTATION.md existente después de una sesión de trabajo, una implementación, un arreglo o una mejora — conserva toda la información crítica, añade los aprendizajes nuevos y los obstáculos superados con sus soluciones, elimina solo el contenido totalmente obsoleto, y busca quedar ~1% más corto para que una sesión de IA nueva pueda retomar el trabajo sin pérdida de contexto. No usar para crear una documentación desde cero (para eso está /doc-nueva).
+description: Usar cuando el usuario quiera actualizar un DOCUMENTATION.md existente después de una sesión de trabajo, una implementación, un arreglo o una mejora — conserva toda la información crítica, añade los aprendizajes nuevos y los obstáculos superados con sus soluciones, elimina solo el contenido totalmente obsoleto, y busca quedar ~1% más corto para que una sesión de IA nueva pueda retomar el trabajo sin pérdida de contexto (la sección de Próximos Pasos solo cuando ningún build plan / documento de traspaso sea dueño de la hoja de ruta). PASO 0, antes de nada — comprueba la ruta: si el proyecto tiene un build plan, busca en él su «Protocolo de Documentación» y obedécelo; y asegúrate de estar actualizando el documento que es DUEÑO de lo que has tocado, no el archivo de documentación que tengas más a mano. No usar para crear una documentación desde cero (para eso está /doc-nueva).
 ---
 
 bien, vamos con la documentación
@@ -108,7 +108,7 @@ Verificación:
 
 Piensa en profundidad. Piensa mucho antes de ejecutar estos pasos. Piensa en profundidad entre pasos.
 
-EMPIEZA CREANDO UN TODO ... por ejemplo:
+EMPIEZA CREANDO UN TODO — usa las herramientas de tareas (`TaskCreate` un punto por paso, `TaskUpdate` para ir marcando el avance), no solo una lista escrita en el chat ... por ejemplo:
 
      ☐ Leer el archivo de DOCUMENTACIÓN actual FRESCO DESDE DISCO (no fiarse de la copia en memoria)
      ☐ Leer la conversación con cuidado para entender todos los cambios hechos

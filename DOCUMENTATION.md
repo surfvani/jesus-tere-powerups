@@ -13,19 +13,29 @@ jesus-tere-powerups/
 ├── global/               ← contenido para ~/.claude/CLAUDE.md (reglas globales: se cargan en TODAS las sesiones)
 │   └── REGISTRO.md       ← el Registro por defecto; install.sh lo mantiene entre marcadores
 ├── personas/             ← personas para su selector (install.sh las enlaza automáticamente en ~/.claude/personas/)
+│   ├── CLAUDEDEV.md      ← la persona para trabajar en la web y en cosas técnicas (impone el flujo obligatorio)
 │   ├── GENERICO.md       ← persona genérica: sin instrucciones específicas + Registro por defecto
-│   └── TRIADAAGENTES.md  ← la persona conductora de la tríada (la 4.ª de su selector)
+│   └── TRIADAAGENTES.md  ← la persona conductora de la tríada (planificar / investigar / ejecutar)
 └── skills/               ← todas las habilidades del sistema, en español
     ├── brainstorming/SKILL.md
     ├── continuia/SKILL.md
     ├── deacuerdo/SKILL.md
+    ├── defcode/SKILL.md          ← disciplina de ejecución en un sitio vivo (copias, ediciones dirigidas, idiomas, caché, comprobación segura)
     ├── destila/SKILL.md
     ├── doc-actualizar/SKILL.md
     ├── doc-nueva/SKILL.md
     ├── planifica/SKILL.md
     ├── prepara-investigacion/SKILL.md
-    └── simplll/SKILL.md
+    ├── simplll/SKILL.md
+    └── whatdocs/SKILL.md         ← entender el sistema entero ANTES de tocar nada; termina en la puerta (/simplll + /deacuerdo)
 ```
+
+**Dos familias de trabajo, un mismo sistema:**
+
+| Familia | Persona | Para qué |
+|---|---|---|
+| Proyectos e iniciativas | `TRIADAAGENTES` | Planificar algo nuevo, investigar, ejecutarlo por sesiones |
+| Web y cosas técnicas | `CLAUDEDEV` | Cambiar, arreglar o montar cosas en la web del colegio |
 
 ---
 
@@ -60,7 +70,7 @@ Requisitos del ordenador: **solo Claude Code**. Todo lo demás lo hace el agente
 
 1. **El repo es PÚBLICO** (decisión de Marc, 2026-07-13) → no hace falta ningún token ni cuenta de GitHub. El clone y las actualizaciones futuras (`pull.sh`) funcionan directamente.
 2. En su Claude Code, **pegar el prompt de instalación** (abajo) tal cual. Si el selector de personas pregunta al abrir la sesión: responder `none` (es una sesión de instalación).
-3. Al terminar: **cerrar la sesión y abrir una nueva** — las 7 habilidades quedan disponibles, y el selector de personas debería ofrecer TRIADAAGENTES (si el selector tiene la lista fija dentro del hook, Marc la añade a mano al hook).
+3. Al terminar: **cerrar la sesión y abrir una nueva** — las 11 habilidades quedan disponibles, y el selector de personas debería ofrecer TRIADAAGENTES, CLAUDEDEV y GENERICO (si el selector tiene la lista fija dentro del hook, Marc la añade a mano al hook).
 4. Actualizaciones futuras: `cd ~/jesus-tere-powerups && ./pull.sh` (trae lo nuevo y re-ejecuta el instalador solo).
 
 ### Prompt de instalación (copiar y pegar en su Claude Code)
@@ -76,14 +86,15 @@ Hola. Vamos a instalar el sistema de la Tríada de Agentes en este ordenador. Ha
 
 3. Ejecuta el instalador:
    cd ~/jesus-tere-powerups && ./install.sh
-   (Conecta las 7 habilidades en ~/.claude/skills/ y la persona TRIADAAGENTES en ~/.claude/personas/. Es seguro re-ejecutarlo.)
+   (Conecta las 11 habilidades en ~/.claude/skills/, las 3 personas en ~/.claude/personas/, el bloque de reglas globales en ~/.claude/CLAUDE.md y el ajuste de las listas de tareas en ~/.claude/settings.json. Es seguro re-ejecutarlo.)
 
 4. Verifica y enséñame el resultado:
    ls ~/.claude/skills/
    ls -la ~/.claude/personas/
-   Deben aparecer las 7 habilidades (brainstorming, continuia, destila, doc-actualizar, doc-nueva, planifica, prepara-investigacion) y TRIADAAGENTES.md.
+   Deben aparecer las 11 habilidades (brainstorming, continuia, deacuerdo, defcode, destila, doc-actualizar, doc-nueva, planifica, prepara-investigacion, simplll, whatdocs) y las 3 personas (CLAUDEDEV.md, GENERICO.md, TRIADAAGENTES.md).
+   Comprueba también que el instalador terminó diciendo «OK verificado en ~/.claude/settings.json». Si dijo FALLO, cuéntamelo en vez de seguir.
 
-5. Para terminar, dime en 3 líneas y en lenguaje llano: qué ha quedado instalado, y que el usuario debe cerrar esta sesión y abrir una nueva — en la nueva, las habilidades ya estarán activas y podrá elegir la persona TRIADAAGENTES al arrancar.
+5. Para terminar, dime en 3 líneas y en lenguaje llano: qué ha quedado instalado, y que el usuario debe cerrar esta sesión y abrir una nueva — en la nueva, las habilidades ya estarán activas y podrá elegir persona al arrancar (TRIADAAGENTES para proyectos, CLAUDEDEV para la web).
 ```
 
 ---
@@ -133,6 +144,31 @@ repo, y el siguiente `./pull.sh` lo actualiza en sus ordenadores.
 
 Enlazados, como siempre. Sin cambios.
 
+### 4. El ajuste de las listas de tareas (`~/.claude/settings.json`)
+
+Casi todos los skills de este repo empiezan diciendo «crea una lista de tareas».
+En las versiones nuevas de Claude Code esas herramientas vienen **apagadas por
+defecto** con los modelos nuevos — así que el skill pedía una herramienta que no
+existía y la lista no se creaba nunca, **en silencio**. Es el mismo problema que
+Marc encontró y arregló en su repo el 2026-08-25.
+
+`install.sh` añade esta clave, y solo esta:
+
+```json
+"env": { "CLAUDE_CODE_ENABLE_TODO_TOOLS": "1" }
+```
+
+| Situación | Qué hace `install.sh` |
+|---|---|
+| No existe `settings.json` | Lo crea con esa única clave. |
+| Existe | Añade la clave y **conserva todo lo demás** (modelo, tema, permisos, plugins, otras variables). Copia previa: `settings.json.copia_AAAA-MM-DD`. |
+| La clave ya está puesta | No toca el archivo ni hace copia. |
+| El archivo está corrupto (no es JSON válido) | **No lo toca.** Avisa y sigue. |
+
+Al terminar, el instalador **relee el archivo ya instalado** y dice `OK verificado`
+o `FALLO`. Esa verificación existe porque un fallo silencioso aquí dejaría las
+listas de tareas muertas sin que nadie se enterase durante semanas.
+
 ---
 
 Todo es idempotente: en la segunda ejecución ya está todo en su sitio, así que no
@@ -170,7 +206,162 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 
 ---
 
+## Trabajo en la web del colegio
+
+La segunda familia de trabajo del sistema (2026-08-26). La web es
+**www.colegiosisp.com** — WordPress, alojada en OVH.
+
+### Dónde vive el agente — y por qué
+
+**Claude Code se ejecuta en el ordenador de ellos y llega al alojamiento por SSH.**
+Se probó contra la alternativa (arrancar Claude Code dentro del propio
+alojamiento) y esta gana en todo:
+
+| | Agente en su Mac (elegido) | Agente dentro del alojamiento (descartado) |
+|---|---|---|
+| Skills y personas en español | ✅ están donde ya están — **un solo sitio que mantener** | ❌ habría que instalarlos y mantenerlos también allí |
+| Arrastrar fotos al chat | ✅ | ❌ |
+| ¿Arranca siquiera? | ✅ probado y funcionando | ❓ el alojamiento tiene un Node de 2021; Claude Code pide uno mucho más nuevo |
+| Trabajo sobre la web (archivos, WordPress, base de datos) | ✅ por SSH | ✅ |
+
+Todo lo que el agente haría sentado dentro del alojamiento, lo hace igual desde el
+Mac: SSH manda los comandos y devuelve el resultado. No se pierde nada.
+
+### Cómo funciona la conexión sin contraseña
+
+Una «llave SSH» son dos archivos: uno **privado**, que se queda para siempre en su
+ordenador, y uno **público**, que se instala en el alojamiento. Al conectar, el
+ordenador enseña su llave, el servidor la reconoce y entra. Sin escribir contraseñas.
+
+**La llave privada nunca viaja.** Por eso no se les envía nada: la llave nace en su
+Mac. Lo único que viaja es la mitad pública, que no es secreta.
+
+### Los datos del alojamiento
+
+| Dato | Valor |
+|---|---|
+| Servidor SSH | `ssh.cluster120.hosting.ovh.net` (puerto 22) |
+| Usuario | `elpeixetjv` |
+| Atajo que se configura | `colegio-ovh` |
+| Dónde vive la web | `~/www` |
+| Herramienta de WordPress | `~/bin/wp` (wp-cli, ya instalada) |
+| PHP | 8.3 |
+
+⚠️ **La contraseña SSH del usuario `elpeixetjv` es también la del FTP.** Si se
+cambia, cualquiera que la tenga guardada en un programa de FTP deja de entrar
+hasta que la actualice. Tenerlo en cuenta antes de tocarla.
+
+### Instalación en el Mac de Jesús o Tere (una sola vez)
+
+Se pega este prompt en su Claude Code (persona: `none`, es una sesión de
+instalación). Requisito: haber hecho antes la instalación general de arriba.
+
+```
+Hola. Vamos a preparar este ordenador para poder trabajar en la web del colegio. Hazlo todo tú, paso a paso, explicando en una frase qué hace cada paso y sin dar nada por instalado.
+
+1. Crea la llave de acceso al alojamiento (si ya existe, no la toques ni la regeneres):
+   ls ~/.ssh/colegiosisp-ovh 2>/dev/null || ssh-keygen -t ed25519 -f ~/.ssh/colegiosisp-ovh -N "" -C "colegiosisp-ovh"
+
+2. Añade el atajo de conexión al final de ~/.ssh/config (crea el archivo si no existe).
+   IMPORTANTE: antes de tocarlo, si el archivo ya existía, haz una copia:
+   cp ~/.ssh/config ~/.ssh/config.copia_antes_de_colegio_$(date +%Y-%m-%d)
+   Comprueba primero si ya está puesto (busca «colegio-ovh»); si está, no lo añadas otra vez.
+   El bloque a añadir es exactamente este:
+
+   Host colegio-ovh ssh.cluster120.hosting.ovh.net
+       HostName ssh.cluster120.hosting.ovh.net
+       User elpeixetjv
+       IdentityFile ~/.ssh/colegiosisp-ovh
+       IdentitiesOnly yes
+       ServerAliveInterval 30
+
+3. Crea la carpeta del proyecto de la web:
+   mkdir -p ~/WebColegio
+
+4. Enséñame la mitad pública de la llave, en un bloque de texto que pueda copiar:
+   cat ~/.ssh/colegiosisp-ovh.pub
+   Y dime, en una frase: que copie ese texto y se lo envíe a Marc por WhatsApp para que le dé acceso. Esto NO es secreto — es la mitad pública, la que va en la cerradura.
+
+5. Para terminar, dime en 3 líneas y en lenguaje llano qué ha quedado hecho y qué falta (que Marc dé de alta la llave). No intentes conectar todavía: hasta que Marc no la dé de alta, no funcionará.
+```
+
+Marc da de alta esa llave desde su ordenador, que ya tiene acceso, y avisa. La
+primera sesión de web después de eso se abre con la persona `CLAUDEDEV` y el
+agente ya entra solo.
+
+### El día a día
+
+Se abre Claude Code, se elige la persona `CLAUDEDEV`, y se pide lo que haga falta
+en lenguaje normal: «cambia estas tres fotos de la página de infantil» (arrastrando
+las fotos al chat), «mejora el SEO de la página de admisiones», «¿por qué no llega
+el formulario de contacto?».
+
+El agente lleva el flujo solo: entiende primero, lo explica en llano, hace las
+preguntas que hagan falta, espera el **OK explícito**, y solo entonces toca algo —
+con copia de seguridad delante y comprobación detrás. Consultar cosas («enséñame
+las últimas fotos que se subieron») no pasa por ningún proceso: se responde y ya.
+
+### Las redes de seguridad que ya tiene la web
+
+1. **UpdraftPlus** — copias de seguridad automáticas del sitio.
+2. **WP Staging** — permite probar en una copia antes de tocar lo que ve la gente.
+3. **El botón «Restore backup» del panel de OVH** — la última red, por debajo de todo.
+
+Además, `/defcode` obliga a hacer copia de cada archivo **antes** de editarlo, en el
+servidor y en el ordenador.
+
+### Proyectos grandes de web
+
+Un sistema de matrícula online, rehacer una sección entera o una campaña **no son
+un cambio: son un proyecto**. Eso arranca con `/planifica` (la tríada), se investiga
+lo que haga falta con el satélite, y se ejecuta después con `CLAUDEDEV`. Los dos
+sistemas se complementan.
+
+---
+
+## Catálogo de personas
+
+Las tres viajan en el repo y `install.sh` las enlaza en `~/.claude/personas/`.
+
+### `TRIADAAGENTES`
+
+- **Qué es:** la persona conductora del sistema de proyectos. Sabe cuándo activar `/planifica`, cómo llevar los prompts al satélite y traer los resultados, cómo arrancar sesiones ejecutoras y cuándo cerrar con `/continuia`. Además guía y anima: Jesús y Tere son muy capaces pero este sistema es nuevo para ellos.
+- **Cuándo se elige:** proyectos e iniciativas (campañas, planes, cursos, cualquier cosa que haya que pensar antes de hacer).
+- **Última actualización:** 2026-08-26 (regla de tuteo: siempre de tú, en singular, nunca «vosotros»). Prior: 2026-07-31 (bloque del Registro por defecto). Prior: 2026-07-13 (creada)
+
+### `CLAUDEDEV`
+
+- **Original:** `CLAUDEDEV` (marc-jovani-powerups) — nombre conservado en inglés a petición de Marc, igual que `whatdocs` y `defcode`
+- **Qué es:** la persona para trabajar en la web del colegio y en cosas técnicas. Entiende primero, toca después.
+- **Diferencia clave con el original de Marc — IMPONE el flujo, no lo sugiere.** Marc escribe `/whatdocs` de memoria; Jesús y Tere no tienen por qué acordarse de nada. Así que la persona lleva el flujo por ellos: para **modificar** cualquier cosa (un archivo, una foto, un texto, un ajuste, un plugin, la base de datos) es obligatorio `/whatdocs` → `/simplll` → `/deacuerdo` → **GO explícito** → `/defcode` → `/doc-actualizar`. **Leer, mirar, buscar y comprobar es libre** y sin ceremonia — consultar no cambia nada, y una pregunta no debe convertirse en un proyecto. Si el usuario ordena saltarse el flujo, se obedece tras decir en UNA frase el mayor riesgo sin examinar (misma salida de emergencia que ya tiene `/deacuerdo`).
+- **Otras adaptaciones frente al original:** framing de «no programador» en vez del perfil de Marc (compositor con plugins y apps comerciales); tuteo en singular; ejemplos de programación → ejemplos de la web del colegio; `pm2 restart` → vaciar la caché; **sin git** (regla del repo); copias de seguridad con el nombre descriptivo del repo (`archivo.copia_antes_de_<qué>_AAAA-MM-DD`); apartado propio con las cuatro trampas de esta web (está viva, hay varios idiomas, hay caché, hay copias y sitio de pruebas); enlace con la tríada (los proyectos grandes van a `/planifica`, las sesiones se cierran con `/continuia`); modos por usuario (Jesús visual / Tere lectora / Ali directa); Registro por defecto incluido, igual que las otras dos personas.
+- **Cuándo se elige:** cambios en la web — fotos, textos, SEO, arreglos, cosas nuevas.
+- **Última actualización:** 2026-08-26 (creada)
+
+### `GENERICO`
+
+- **Original:** `CLAUDEREG` (la persona «sin preferencias» de Marc)
+- **Qué es:** modo genérico, sin instrucciones específicas más allá del Registro por defecto. No anuncia su contenido al cargarse.
+- **Cuándo se elige:** cualquier cosa que no encaje en las otras dos.
+- **Última actualización:** 2026-07-31 (creada)
+
+---
+
 ## Catálogo de skills
+
+### `whatdocs`
+
+- **Original:** `whatdocs` (marc-jovani-powerups) — nombre conservado en inglés a petición de Marc
+- **Qué hace:** el protocolo de «entender antes de tocar». Prohíbe aplicar nada: primero repetir lo que se ha entendido, mirar la estructura por carpetas concretas, listar TODOS los documentos necesarios, leer cada uno ENTERO (saltarse archivos o partes está PROHIBIDO), reevaluar y leer más si hace falta, y proponer entonces una solución genérica, limpia, duradera, coherente con lo que ya existe y que NO duplique nada ya montado. Termina obligatoriamente en la puerta.
+- **Adaptaciones aplicadas:** ⚠️ la puerta final se conecta a los skills que YA existen aquí — `/simplll` + `/deacuerdo` — en vez de a `samepage-brainstorming`, que en este sistema no existe; ⚠️ **eliminado el bloque «RUNNING INSIDE /plan-build»** del original (`/planifica` no tiene la Puerta de Descubrimiento del paso 0 que lo motivaba, así que aquí sería una instrucción huérfana); tipos de archivo traducidos al mundo WordPress (páginas, plantillas, tema, plugins, **otros idiomas**, formularios, fotos, ajustes) en vez de modelos/rutas/JS; comprobaciones del entorno → comprobaciones de la web (versión, tema, plugins, idiomas, caché, copias); la regla de «nada de preguntas perezosas» conservada íntegra — es la más importante del skill; bloque de propuesta traducido con dos campos nuevos propios de esta web (**otros idiomas afectados** y **comprobaciones que haré al terminar**); ⚠️ conservada tal cual la REGLA DE ENTREGA (las tres piezas en un único mensaje final) — nació de un fallo real y sigue aplicando aquí; tuteo; herramientas de tareas nombradas.
+- **Última actualización:** 2026-08-26 (creado)
+
+### `defcode`
+
+- **Original:** `defcode` (marc-jovani-powerups) — nombre conservado en inglés a petición de Marc
+- **Qué hace:** la disciplina de ejecución cuando el cambio se aplica de verdad en un sitio vivo. Última comprobación de contexto, prohibido tocar archivos no leídos enteros, copia de seguridad con nombre descriptivo antes de cada edición, nada de trucos de terminal, nada de archivos con nombre duplicado, sin salirse del alcance, sin suposiciones — y al terminar, vaciar la caché y hacer una comprobación SEGURA que demuestre que aquello funciona.
+- **Adaptaciones aplicadas:** ⚠️ el «app en producción con pagos» del original → **la web del colegio, que están viendo familias ahora mismo** (mismo peso, ejemplo real: un formulario que deja de llegar, una sección que desaparece); ⚠️ la puerta de continuidad exige el GO de `/deacuerdo` en vez del de `samepage-brainstorming`; ⚠️ **«route matching» → repaso de idiomas**: el fallo clásico aquí no son las rutas de una API sino cambiar el castellano y olvidar el valenciano — con el agravante de que quien lo hizo no lo ve, porque navega en el idioma que sí cambió; también menús, enlaces internos, tamaños de foto y formularios; ⚠️ `pm2 restart` → **vaciar la caché** (con el aviso de que casi todos los «no ha funcionado» son en realidad «estoy mirando la copia vieja»); migraciones de base de datos → cambios en la base de datos **con copia previa obligatoria**; ⚠️ **doble copia de seguridad** en servidor remoto (una en el servidor para deshacer rápido, otra descargada por si el servidor se estropea); ejemplos de comprobación insegura reescritos con los riesgos reales de esta web — **enviar un correo de prueba a toda la lista de familias** (hay sistema de envíos masivos instalado), disparar un formulario que avise a secretaría, desactivar un plugin en vivo «a ver qué pasa», borrar fotos «que parecían no usarse»; añadida la comprobación en móvil; ⚠️ **REGLA 8 nueva: nada de git** (regla del repo); informe de ejecución traducido con filas propias de idiomas y caché; tuteo; herramientas de tareas nombradas.
+- **Última actualización:** 2026-08-26 (creado)
 
 ### `planifica`
 
@@ -202,7 +393,7 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 - **Qué hace:** crea el DOCUMENTATION.md de un proyecto desde cero: objetivo de tamaño pactado antes de escribir (~500-700 líneas por defecto), sección bloqueada de estructura de archivos al principio, reglas anti-verborrea, y sección de conocimiento duramente ganado que no se borra jamás.
 - **Adaptaciones aplicadas:** traducción íntegra; «app / codebase / server» → «proyecto»; filtros del comando `tree` explicados en genérico (carpetas de sistema, multimedia pesado, archivos generados); «tiempo de depuración» → «tiempo invertido en resolver problemas»; NOTA sobre `tree` a petición de Marc (para qué sirve, aplica a apps y a cualquier proyecto con archivos, y plan B si no está instalado: investigar el directorio a mano); renombrado `crea-doc` → `doc-nueva` (el par queda `doc-nueva` / `doc-actualizar`).
 - **Estado:** ✅ aprobado y publicado
-- **Última actualización:** 2026-07-13 (creado)
+- **Última actualización:** 2026-08-26 (retro-porte selectivo del original inglés, aprobado por Marc: la description gana un **PASO 0 de comprobación de ruta** — si el proyecto tiene un build plan con su «Protocolo de Documentación» que ya declara dónde vive la documentación, se obedece eso en vez de crear un archivo nuevo por cuenta propia. Adaptado: fuera la referencia a la maquinaria CLAUDEMANAGER del original, que aquí no existe. ⚖️ NO portado (deliberadamente): las ~7 correcciones de erratas del original inglés — la traducción española nunca las tuvo.) Prior: 2026-07-13 (creado)
 
 ### `doc-actualizar`
 
@@ -210,7 +401,7 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 - **Qué hace:** actualiza el DOCUMENTATION.md al final de una sesión: lista todo lo hecho, relectura fresca desde disco obligatoria (nunca de memoria), actualizaciones dirigidas (nunca reescribir entero), objetivo ~1% más corto como pasada de optimización, conocimiento duramente ganado intocable, y verificación final punto por punto.
 - **Adaptaciones aplicadas:** traducción íntegra; «sesión de código» → «sesión de trabajo»; misma nota de `tree` con plan B (investigar el directorio a mano si no está instalado); referencia cruzada a `/doc-nueva`.
 - **Estado:** ✅ aprobado y publicado
-- **Última actualización:** 2026-07-13 (creado)
+- **Última actualización:** 2026-08-26 (retro-porte selectivo del original inglés, aprobado por Marc — tres cambios: (1) la description gana el mismo **PASO 0 de comprobación de ruta** que `/doc-nueva`, más la advertencia de actualizar el documento que es **DUEÑO** de lo que se ha tocado, no el archivo de documentación que se tenga más a mano; (2) «EMPIEZA CREANDO UN TODO» ahora **nombra las herramientas** (`TaskCreate` / `TaskUpdate`) en vez de dejarlo en una lista escrita en el chat — encaja con el ajuste que `install.sh` enciende desde hoy; (3) la description recoge que la sección de Próximos Pasos es condicional, algo que el cuerpo ya decía pero la description no. ⚖️ NO portado (deliberadamente): las ~16 correcciones de erratas del original inglés — la traducción española nunca las tuvo.) Prior: 2026-07-13 (creado)
 
 ### `brainstorming`
 
@@ -261,6 +452,9 @@ Mapa visual completo: artifact «Tríada de Agentes — Jesús & Tere» (2026-07
 | 9 | `simplll` | simplll (pasada Fable 5) | ✅ publicado (2026-07-16) |
 | 10 | `deacuerdo` | samepage-brainstorming (pasada Fable 5) | ✅ publicado (2026-07-16) |
 | 11 | PERSONA `GENERICO` | CLAUDEREG (la persona «sin preferencias» de Marc) | ✅ creada (2026-07-31) — sin instrucciones propias más allá del Registro por defecto; no anuncia su contenido al cargarse |
+| 12 | PERSONA `CLAUDEDEV` | CLAUDEDEV | ✅ creada (2026-08-26) — para la web; **impone** el flujo en vez de sugerirlo |
+| 13 | `whatdocs` | whatdocs | ✅ creado (2026-08-26) — puerta final conectada a `/simplll` + `/deacuerdo` |
+| 14 | `defcode` | defcode | ✅ creado (2026-08-26) — repaso de idiomas y caché en vez de rutas y pm2 |
 
 Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantalla → Marc revisa → siguiente.
 
@@ -276,9 +470,79 @@ Proceso pactado: **uno a uno** — Claude adapta → abre el documento en pantal
 5. **Remoto GitHub:** `surfvani/jesus-tere-powerups` — → **HECHO** (repo creado y publicado el 2026-07-13). → Ese mismo día Marc lo hizo **PÚBLICO** para que la instalación en sus ordenadores no necesite tokens ni cuentas de GitHub.
 6. **Retro-portes desde el repo inglés (2026-07-16):** la pasada de mejora con Fable 5 sobre marc-jovani-powerups creó allí los skills `simplll` (explicación en llano) y `samepage-brainstorming` (puerta de claridad + alineamiento tras /whatdocs, /defcode bloqueado hasta un GO explícito). **Decisión: NO se crean equivalentes españoles como skills** — el sistema de J&T ya encarna ambos conceptos: la persona TRIADAAGENTES impone lenguaje llano siempre, y las puertas existen en /brainstorming (PUERTA-DURA) y en el cierre en 3 tiempos de /continuia (ahora enriquecido con la exposición de asunciones dudosas + OK explícito). Se portó lo aplicable a /planifica (disparadores 10x ampliados, éxitos-y-fracasos, documentación no-software) y /continuia. → **REVERTIDA ese mismo día por Marc: SÍ se crean** — `/simplll` (nombre de marca conservado) y `/deacuerdo` (nombre elegido por Marc). Aclaración clave de Marc: la puerta NO ocurre en el momento de /continuia — /continuia solo ESCRIBE la orden en el prompt de traspaso; los skills se cargan y ejecutan en la SESIÓN SIGUIENTE, justo después de terminar la fase de exploración (la lectura obligatoria), antes de tocar nada. Además, Marc sumó a **Ali** como tercera usuaria del sistema (ver Propósito) — descriptions neutralizadas a «el usuario»; los ejemplos de colegio se quedan como ilustraciones.
 7. **Git en los proyectos de Jesús y Tere:** → **RESUELTO (2026-07-13): NO.** Sin remoto ni planes de tenerlo, un git local solo añadía fricción. Sus carpetas de proyecto van sin git; la función de «deshacer» la cubre la copia de seguridad antes de editar (regla del cierre del traspaso de continuia). El repo de distribución sí sigue en git.
+8. **Trabajo en la web del colegio (2026-08-26):** Jesús y Tere querían poder cambiar cosas de la web ellos mismos con el agente — fotos, SEO, y a futuro un sistema de matrícula online. Decisiones tomadas en la sesión:
+   - **Dónde vive el agente → en SU ordenador, llegando al alojamiento por SSH.** Se probó de verdad contra la alternativa (Claude Code dentro del alojamiento) y esta gana: sus skills y personas en español solo existen en su Mac, se pueden arrastrar fotos al chat, y **hay un solo sitio que mantener**. La alternativa además ni siquiera arrancaría con garantías (el alojamiento tiene un Node de 2021). Ver «Trabajo en la web del colegio».
+   - **Nombres en inglés** (`CLAUDEDEV`, `whatdocs`, `defcode`) — decisión de Marc, misma lógica que con `simplll`: él los tiene en la memoria muscular y así puede darles soporte por teléfono sin traducir nada.
+   - ⚠️ **La persona IMPONE el flujo, no lo sugiere** (decisión de Marc, y es la diferencia importante con su propia CLAUDEDEV). Él escribe `/whatdocs` de memoria; ellos nunca lo harán. Así que la seguridad vive en la herramienta, no en que se acuerden — igual que TRIADAAGENTES ya dice: «tú llevas el mapa; ellos no tienen que acordarse de nada». **Modificar** algo exige el flujo completo hasta un GO explícito; **consultar** es libre y sin ceremonia (una pregunta no puede convertirse en un proyecto); y si el usuario ordena saltárselo, se obedece tras decir en una frase el riesgo que queda sin examinar.
+   - **`TRIADAAGENTES` no se toca.** El enrutado ocurre en el selector de personas al abrir sesión, no dentro de las personas. Si con el uso resulta que se confunden, se puede añadir una línea de referencia cruzada — pero no se hace por adelantado.
+   - **Retro-portes del par de documentación** (`/doc-nueva`, `/doc-actualizar`): aprobados uno a uno tras revisar los diffs del repo inglés. Se portó lo que aplica (PASO 0 de ruta, nombrar las herramientas de tareas, condicionalidad de Próximos Pasos) y NO se portaron las ~23 correcciones de erratas — la traducción española nunca las tuvo.
 
 ---
 
 ## Conocimiento duramente ganado
+
+### El alojamiento de la web (OVH) — comprobado en vivo el 2026-08-26
+
+Todo lo de aquí abajo está **verificado ejecutándolo**, no supuesto. Ahorra una
+tarde entera de tanteo a quien vuelva a montar este acceso.
+
+- **La contraseña del panel de OVH NO es la contraseña SSH.** Cada usuario de
+  FTP-SSH tiene la suya, que se pone desde el panel (pestaña FTP-SSH → los `...`
+  de esa fila → cambiar contraseña). OVH tarda unos minutos en aplicarla. Se
+  perdieron dos intentos con la contraseña del panel antes de caer.
+- ⚠️ **`ssh-copy-id` NO funciona en el alojamiento compartido de OVH.** Pide la
+  contraseña, la acepta y responde `Connection closed`. El motivo: el usuario
+  tiene un intérprete restringido (`/bin/ovh_ssh`) que corta el comando remoto que
+  `ssh-copy-id` necesita ejecutar. **Solución:** entrar a mano
+  (`ssh usuario@servidor`), y pegar allí dentro el `mkdir -p ~/.ssh && echo
+  '<llave pública>' >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys`.
+  Con eso queda instalada.
+- **Una vez instalada la llave, los comandos sueltos por SSH SÍ funcionan.** El
+  intérprete restringido corta a `ssh-copy-id`, pero no impide trabajar: se probó
+  a fondo (leer archivos, buscar, consultar WordPress, subir y borrar archivos).
+- **wp-cli no viene instalado, pero se instala sin permisos de administrador.** Se
+  descarga `wp-cli.phar` en `~/bin/` y se crea al lado un `wp` de dos líneas que lo
+  lanza con el PHP correcto. Ya está hecho — vive en `~/bin/wp`.
+- **`~/bin` está FUERA de la carpeta de la web**, así que nada de lo que se ponga
+  ahí se sirve por internet ni es visible para nadie.
+- **La carpeta real del usuario es `/homez.12/elpeixetjv`**, aunque el panel de OVH
+  muestre `/home/elpeixetjv`.
+- **Hay 7 instalaciones de WordPress en la cuenta.** La web viva es la de `~/www`
+  (tema `colegiosisp`). Las demás son copias antiguas, pruebas y otros proyectos —
+  no confundirlas.
+- **Herramientas disponibles en el alojamiento:** PHP 8.3, curl, wget, mysql,
+  mysqldump, git, tar, unzip, rsync, python3, find, grep, sed, nano, vim.
+  **No hay:** npm. **No hay administrador (root)** — es alojamiento compartido.
+- ⚠️ **El Node del alojamiento es la versión 10, de 2021.** Demasiado antiguo para
+  Claude Code. Es una de las razones por las que el agente vive en el Mac.
+- ⚠️ **Ojo con la salida a internet desde el servidor.** Se comprobó: a
+  `api.wordpress.org` sale bien (200) y a `downloads.wordpress.org` también, pero
+  **a `api.stripe.com` no consiguió conectar**. Fue una sola prueba a un solo
+  sitio, así que no es una conclusión cerrada — pero **hay que confirmarlo antes de
+  diseñar nada de pagos online**, porque un sistema de matrícula que no puede
+  hablar con la pasarela de pago no funciona.
+- **Lo que ya hay instalado y sirve:** Yoast SEO (el trabajo de SEO parte de una
+  base), WPML (varios idiomas), UpdraftPlus (copias automáticas), WP Staging
+  (sitio de pruebas), MailPoet (envíos masivos — **cuidado con las pruebas**),
+  Contact Form 7. **No hay** WooCommerce ni ninguna pasarela de pago: el sistema de
+  matrícula sería construir algo nuevo.
+
+### Sobre este repositorio
+
+- **(2026-08-26) Mira si el clon local está al día ANTES de tocar nada.** Al abrir
+  la sesión, el clon del Mac estaba **3 commits por detrás de GitHub** (persona
+  `GENERICO`, bloque global del Registro, `install.sh` con sustitución de personas,
+  `planifica` v1.5) **y además tenía 6 archivos modificados sin guardar** desde
+  hacía un mes (la regla de tuteo). Si se hubiera trabajado sobre esa base: o se
+  perdía el trabajo sin guardar, o se construía sobre archivos viejos. El orden
+  correcto es: guardar primero lo local en su propio commit, después traer lo de
+  GitHub (rebase), verificar que ambas cosas conviven, y solo entonces empezar.
+- **(2026-08-26) Las copias de seguridad de los archivos de este repo NO se
+  guardan dentro del repo.** Todo lo que hay aquí viaja a los ordenadores de Jesús
+  y Tere; llenarlo de archivos `.copia_` sería ensuciar sus instalaciones. Como
+  este repo sí usa git, el propio historial ya es la copia de seguridad. (En el
+  repo de Marc sí conviven las copias dentro, pero ese no se distribuye a nadie.)
+
+### De la adaptación original
 
 - **(2026-07-13)** Hallazgos de la lectura íntegra de los originales que la adaptación debe corregir: (a) `plan-build` línea 176 aún referencia el snippet antiguo «resss» de TextExpander; (b) el `brainstorming` de Superpowers termina invocando `writing-plans` (no existirá aquí — debe volver a `/planifica`); (c) la regla dura nº 7 de `handoff-continuia` exige inglés US para todo lo escrito (invertir a español); (d) `distill-general-conversations` saca los documentos en INGLÉS por defecto y su registro de nombres solo conoce «Marc Jovani».

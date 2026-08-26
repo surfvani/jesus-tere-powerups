@@ -244,10 +244,116 @@ if [[ -f "$GLOBAL_SRC" ]]; then
   fi
 fi
 
+# ────────── ajuste de Claude Code: herramientas de tareas ──────────
+#
+# Casi todos los skills de este repo dicen «empieza creando una lista de tareas».
+# En las versiones nuevas de Claude Code esas herramientas (TaskCreate,
+# TaskUpdate, TaskList, TaskGet) vienen APAGADAS por defecto con los modelos
+# nuevos — así que el skill pediría una herramienta que no existe y la lista no
+# se crearía, en silencio.
+#
+# Se encienden con una variable dentro de ~/.claude/settings.json:
+#     "env": { "CLAUDE_CODE_ENABLE_TODO_TOOLS": "1" }
+#
+# Aquí se AÑADE esa clave respetando todo lo demás del archivo (modelo, tema,
+# permisos, plugins, lo que haya). Antes de cualquier cambio real se guarda
+# settings.json.copia_AAAA-MM-DD. Es idempotente: si ya está puesta, no se toca
+# el archivo ni se hace copia. Al final se relee el archivo YA INSTALADO para
+# comprobar que la clave ha aterrizado de verdad — un fallo silencioso aquí
+# dejaría las listas de tareas muertas sin que nadie se enterase.
+
+SETTINGS="$HOME/.claude/settings.json"
+TODO_KEY="CLAUDE_CODE_ENABLE_TODO_TOOLS"
+
+echo "→ ajuste: herramientas de tareas ($TODO_KEY)"
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "  AVISO  python3 no está en el PATH — no puedo tocar settings.json." >&2
+  echo "         Añádelo a mano en $SETTINGS:  \"env\": { \"$TODO_KEY\": \"1\" }" >&2
+else
+  mkdir -p "$(dirname "$SETTINGS")"
+
+  if python3 - "$SETTINGS" "$TODO_KEY" <<'PY'
+import datetime, json, os, shutil, sys
+
+path, key = sys.argv[1], sys.argv[2]
+
+if os.path.exists(path):
+    try:
+        with open(path, encoding="utf-8") as fh:
+            data = json.load(fh)
+    except (ValueError, OSError):
+        print("  AVISO  settings.json no es JSON válido — lo dejo intacto.")
+        sys.exit(0)
+    if not isinstance(data, dict):
+        print("  AVISO  settings.json no tiene la forma esperada — lo dejo intacto.")
+        sys.exit(0)
+else:
+    data = {}
+
+env = data.get("env")
+if not isinstance(env, dict):
+    env = {}
+
+if env.get(key) == "1":
+    print("  OK     ya estaba puesto (archivo intacto)")
+    sys.exit(0)
+
+if os.path.exists(path):
+    stamp = datetime.date.today().isoformat()
+    backup = "%s.copia_%s" % (path, stamp)
+    n = 1
+    while os.path.exists(backup):
+        backup = "%s.copia_%s-%d" % (path, stamp, n)
+        n += 1
+    shutil.copy2(path, backup)
+    print("  COPIA  %s" % os.path.basename(backup))
+
+env[key] = "1"
+data["env"] = env
+
+tmp = path + ".jtp_tmp"
+with open(tmp, "w", encoding="utf-8") as fh:
+    json.dump(data, fh, indent=2, ensure_ascii=False)
+    fh.write("\n")
+os.replace(tmp, path)
+print("  ESCRITO %s=1" % key)
+PY
+  then :; else
+    echo "  AVISO  no he podido escribir settings.json — habrá que ponerlo a mano." >&2
+  fi
+
+  # Verificación: releer el archivo YA INSTALADO y comprobar la clave.
+  if python3 - "$SETTINGS" "$TODO_KEY" <<'PY'
+import json, sys
+
+path, key = sys.argv[1], sys.argv[2]
+try:
+    with open(path, encoding="utf-8") as fh:
+        got = json.load(fh).get("env", {}).get(key)
+except Exception:
+    got = None
+
+if got == "1":
+    print("  OK     verificado en ~/.claude/settings.json")
+    sys.exit(0)
+
+print("  FALLO  %s no ha quedado puesto (encontrado: %r)" % (key, got))
+print("         Las listas de tareas de los skills no funcionarán en las sesiones nuevas.")
+sys.exit(1)
+PY
+  then :; else
+    true   # el aviso ya está impreso; esto no debe abortar la instalación
+  fi
+fi
+
 echo
 echo "Hecho."
 echo "  Skills:                 $SKILLS_DEST"
 echo "  Personas:               $PERSONAS_DEST"
 echo "  Reglas globales:        $CLAUDE_MD (solo el bloque entre marcadores)"
+echo "  Ajuste de tareas:       $SETTINGS (clave $TODO_KEY)"
 echo "  Herramientas incluidas: $BIN_DEST"
 echo "  Venvs de skills:        $CONFIG_BASE/<nombre-skill>/venv (cuando hay requirements.txt)"
+echo
+echo "Cierra esta sesión de Claude Code y abre una nueva para que todo esté activo."
