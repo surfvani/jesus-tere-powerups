@@ -251,43 +251,26 @@ Mac. Lo único que viaja es la mitad pública, que no es secreta.
 cambia, cualquiera que la tenga guardada en un programa de FTP deja de entrar
 hasta que la actualice. Tenerlo en cuenta antes de tocarla.
 
-### Instalación en el Mac de Jesús o Tere (una sola vez)
+### Puesta en marcha de cada Mac (operación de una sola vez)
 
-Se pega este prompt en su Claude Code (persona: `none`, es una sesión de
-instalación). Requisito: haber hecho antes la instalación general de arriba.
+Cada ordenador se prepara **una única vez con un prompt que Marc envía** (se pega
+en su Claude Code; al selector de personas se responde `none`). El prompt es
+autosuficiente y no se repite aquí: pone al día el repo (o lo instala si falta),
+crea la llave de ese ordenador, configura el atajo `colegio-ovh`, crea la carpeta
+`~/WebColegio`, y guía al usuario para dar de alta su llave dentro del servidor
+— ese último paso es a mano porque `ssh-copy-id` no funciona en este alojamiento
+(ver «Conocimiento duramente ganado») — y termina comprobando que la conexión ya
+entra sin contraseña.
 
-```
-Hola. Vamos a preparar este ordenador para poder trabajar en la web del colegio. Hazlo todo tú, paso a paso, explicando en una frase qué hace cada paso y sin dar nada por instalado.
+Lo único que conviene recordar aquí, porque es permanente:
 
-1. Crea la llave de acceso al alojamiento (si ya existe, no la toques ni la regeneres):
-   ls ~/.ssh/colegiosisp-ovh 2>/dev/null || ssh-keygen -t ed25519 -f ~/.ssh/colegiosisp-ovh -N "" -C "colegiosisp-ovh"
-
-2. Añade el atajo de conexión al final de ~/.ssh/config (crea el archivo si no existe).
-   IMPORTANTE: antes de tocarlo, si el archivo ya existía, haz una copia:
-   cp ~/.ssh/config ~/.ssh/config.copia_antes_de_colegio_$(date +%Y-%m-%d)
-   Comprueba primero si ya está puesto (busca «colegio-ovh»); si está, no lo añadas otra vez.
-   El bloque a añadir es exactamente este:
-
-   Host colegio-ovh ssh.cluster120.hosting.ovh.net
-       HostName ssh.cluster120.hosting.ovh.net
-       User elpeixetjv
-       IdentityFile ~/.ssh/colegiosisp-ovh
-       IdentitiesOnly yes
-       ServerAliveInterval 30
-
-3. Crea la carpeta del proyecto de la web:
-   mkdir -p ~/WebColegio
-
-4. Enséñame la mitad pública de la llave, en un bloque de texto que pueda copiar:
-   cat ~/.ssh/colegiosisp-ovh.pub
-   Y dime, en una frase: que copie ese texto y se lo envíe a Marc por WhatsApp para que le dé acceso. Esto NO es secreto — es la mitad pública, la que va en la cerradura.
-
-5. Para terminar, dime en 3 líneas y en lenguaje llano qué ha quedado hecho y qué falta (que Marc dé de alta la llave). No intentes conectar todavía: hasta que Marc no la dé de alta, no funcionará.
-```
-
-Marc da de alta esa llave desde su ordenador, que ya tiene acceso, y avisa. La
-primera sesión de web después de eso se abre con la persona `CLAUDEDEV` y el
-agente ya entra solo.
+- **Cada Mac tiene su propia llave.** La mitad privada nunca sale del ordenador
+  donde nace — no se copia de un Mac a otro. El servidor admite varias llaves a
+  la vez, así que cada ordenador se da de alta por su cuenta.
+- **La puesta en marcha necesita la contraseña SSH del usuario `elpeixetjv`**
+  (una vez, y nunca más). Ver el aviso de arriba: no es la del panel de OVH, y es
+  también la del FTP. Esa contraseña es la llave maestra del alojamiento — la
+  guardan ellos.
 
 ### El día a día
 
