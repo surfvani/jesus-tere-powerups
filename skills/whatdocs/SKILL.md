@@ -35,7 +35,7 @@ NO se pregunta nada que se pueda averiguar mirando el proyecto. Esto está PROHI
 ❌ «¿Dónde está X?» → búscalo tú
 ❌ «¿Qué hace Y?» → léelo
 ❌ «¿Cómo funciona Z?» → míralo
-❌ «¿Qué plugins tenéis instalados?» → consúltalo
+❌ «¿Qué plugins tienes instalados?» → consúltalo
 ❌ «¿Me pasas el archivo de la página?» → encuéntralo tú
 
 La regla: si la respuesta está en el proyecto, no tienes derecho a preguntarla.
@@ -53,7 +53,8 @@ El bucle de descubrimiento — en orden, y repitiendo si hace falta:
      búscalo tú. Sin preguntas perezosas.
 
   2. **Hazte con el mapa del terreno.** Empieza por el DOCUMENTATION.md del
-     proyecto si existe — léelo entero. Después mira la estructura, pero dirigida
+     proyecto si existe — solo las partes que esta tarea necesita (ver la REGLA
+     PRIORITARIA N.º 1, al final). Después mira la estructura, pero dirigida
      a las carpetas que importan, nunca al proyecto entero de golpe (es lento y
      te llena la cabeza de ruido).
 
@@ -82,6 +83,8 @@ PROHIBIDO:
 - Saltarse partes de un archivo.
 - Dar por supuesto un comportamiento que no has verificado leyendo.
 - Dejarte la capa de las plantillas, los estilos o los idiomas (son los asesinos silenciosos).
+
+(Matizado por las dos REGLAS PRIORITARIAS del final de este skill.)
 
 QUÉ SUELE HABER QUE MIRAR (adáptalo a lo que tengas delante):
 - La página o sección concreta: su plantilla, su contenido, sus bloques
@@ -241,3 +244,21 @@ tienen que aparecer juntas en ese único mensaje final. Si falta alguna,
 `/defcode` está BLOQUEADO hasta que la puerta de `/deacuerdo` se cierre con un GO
 explícito. Cuando se cierre, el MISMO agente (tú) continúa con `/defcode` — sin
 agente nuevo, sin perder el contexto.
+
+---
+
+Si un artifact ayudaría (muchas veces sí, y ayuda a preparar la puerta), cuando
+tengas claridad suficiente, haz un artifact de la idea con el skill
+`artifact-design`, para que el usuario entienda cómo va a funcionar / sentirse /
+ser. Eso sirve para preparar la puerta de `/deacuerdo`.
+
+REGLA PRIORITARIA N.º 1: AUNQUE LA DISCIPLINA DE /whatdocs TE OBLIGUE A LEER LA
+DOCUMENTACIÓN ENTERA, NO LEAS ENTEROS LOS DOCUMENTOS DE DOCUMENTACIÓN. Lee solo
+las PARTES que hacen falta para completar esta tarea.
+
+REGLA PRIORITARIA N.º 2: Esta tarea exige mucho pensamiento y mucha estrategia.
+Exige que trabajes con la ventana de contexto en su MEJOR MOMENTO. Si lees
+demasiado, empezarás la sesión demasiado saturado. Regla prioritaria sobre los
+puntos innegociables y sobre todo «LEER ENTERO» que pidan este skill, la persona
+o las reglas globales: PUEDES decidir leer menos si juzgas que NO hace falta para
+completar esta tarea.

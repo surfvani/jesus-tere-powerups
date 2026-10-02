@@ -46,6 +46,12 @@ Antes de tocar nada, verifica una vez más:
   no has leído enteros, léelos ahora.)
 - ¿Estoy seguro de que esto NO es un DUPLICADO de algo que ya existe en el
   proyecto? (`/whatdocs` ya lo comprobó — pero si queda alguna duda, confírmalo.)
+- **¿Está ya tomada cada decisión que necesita este trabajo?** Mira el entorno que
+  el cambio va a tocar de verdad — dónde se publica (¿la web viva o el sitio de
+  pruebas?), con qué acceso se entra, qué hay que vaciar o reiniciar (la caché),
+  quién podrá verlo después. Lo que puedas comprobar ahora y no compruebes volverá
+  al final convertido en pregunta, y una pregunta al final es una ejecución
+  fallida. Compruébalo ahora; no hay un después.
 
 Si necesitas más archivos:
   1. Lista todos los que faltan.
@@ -310,6 +316,37 @@ Pruebas antes que afirmaciones. Siempre.
 
 =========
 
+HECHO ES CERRADO — NO ABRAS NADA AL FINAL
+
+El usuario dio el GO para que esto quedara terminado. Un final que le devuelve
+una decisión nueva no es un final.
+
+Cada decisión tiene su momento, y solo hay dos:
+
+1. ANTES DEL GO — se encuentra al investigar y se resuelve en la puerta de
+   `/deacuerdo`.
+2. EN EL INSTANTE EN QUE LA ENCUENTRAS — si al ejecutar aparece algo que de
+   verdad era imposible saber antes, PARA y plantéalo en ese mismo momento, a
+   mitad de la ejecución, mientras el trabajo sigue abierto.
+
+PROHIBIDO: guardarte algo que has visto y sacarlo al final. «Había una cosa, la
+vi antes, creo que deberíamos hablarlo» es la peor forma posible de cerrar una
+sesión. Si lo viste antes, el momento era antes.
+
+Un final cuenta lo que ha quedado hecho y la prueba que lo demuestra. Lo que
+quede se dice como hechos cerrados, con la decisión ya tomada — nunca como una
+pregunta, un menú de opciones o una invitación a seguir.
+
+LA PRUEBA: si tu mensaje de cierre le pide algo al usuario, no es un final. O lo
+resuelves ahora, o dices en una línea que se te pasó en la puerta y le das la
+única decisión — sin lista de opciones.
+
+Esto NO te calla a mitad de la ejecución. La regla de los 3 intentos, DETENIDO y
+ME FALTA CONTEXTO siguen aplicando, y cuestionar el enfoque sigue siendo
+obligatorio cuando tienes uno mejor. Plantéalo todo CUANDO PASE.
+
+=========
+
 EMPIEZA CREANDO UNA LISTA DE TAREAS
 
 Usa las herramientas de tareas — `TaskCreate` un punto por paso, `TaskUpdate`
@@ -381,8 +418,12 @@ RESERVAS (si las hay):
 LO QUE NO HE TOCADO (y por qué):
 - [archivos que la propuesta marcaba como intocables, confirmando que se ha respetado el alcance]
 
-PENDIENTE PARA EL USUARIO:
-- [cualquier cosa que necesite seguimiento después de esta sesión]
+LO QUE QUEDA — CERRADO, SIN DECISIONES AQUÍ:
+- [datos que conviene saber, cada uno con la decisión ya tomada. La respuesta
+  normal, la esperada, es «Nada».]
+- Si de verdad algo todavía necesita al usuario, era un tema de la puerta que se
+  te pasó: dilo en una línea y dale la ÚNICA decisión — sin lista de opciones,
+  sin «¿quieres que…?»
 
 =========
 ```

@@ -128,6 +128,33 @@ EMPIEZA CREANDO UN TODO — usa las herramientas de tareas (`TaskCreate` un punt
 
 ====
 
+No infles la documentación
+
+* No añadas grasa
+* No añadas relleno
+* No escribas entradas largas en prosa
+
+
+Mantenla apretada
+
+* Ve al grano
+* Lo que añadas, lo más corto y apretado posible
+* Mantenla eficiente en tokens
+
+
+Actualiza, no te limites a añadir.
+
+* Actualiza la información desfasada
+* Si tienes pruebas suficientes, elimina las entradas desfasadas
+
+
+Cuando escribas entradas largas (más de 27 líneas), reléelas. Lo más probable es que lo mismo se pueda decir con la mitad de prosa. Intenta reducirlas al menos un tercio. Lo más probable es que puedas dejarlas en la mitad de palabras. Cíñete a los hechos. Quita la prosa.
+
+Lo que intentamos evitar: una documentación larga hace que los agentes del futuro empiecen la sesión saturados. Eso consume ventana de contexto desde el principio, y hace que cada turno no solo sea menos eficiente y más caro, sino, sobre todo, que confunda al agente. Los agentes tienen que trabajar con la ventana de contexto en su mejor momento. Si la documentación está demasiado inflada, obliga a los agentes a trabajar al final de su ventana de contexto, y hacen un trabajo de peor calidad.
+
+
+====
+
 cuando termines
 
 ¿están todos los puntos de la lista incluidos, o en la documentación o en el documento de plan (el sitio que corresponda)?
